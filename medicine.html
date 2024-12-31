@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <h1>Pharma Info</h1>
+        <div class="search-bar">
+            <!-- Search Bar Section -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search Medicine name...">
+                <button onclick="searchTablet()" class="search-button">Search</button>
+            </div>
+            
+            <!-- Display Search Results -->
+    <div class="search-results" id="searchResults">
+        <!-- Results will be shown here -->
+    </div>
+
+    <script>
+        function searchTablet() {
+            var searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            var resultsDiv = document.getElementById('searchResults');
+            var tabletName = "Amoxicillin".toLowerCase();  // Example tablet name
+
+            if (searchQuery === tabletName) {
+                resultsDiv.innerHTML = "<p><strong>Tablet Found:</strong> Amoxicillin</p><p>Details: Amoxicillin is an antibiotic used to treat bacterial infections.</p>";
+            } else {
+                resultsDiv.innerHTML = "<p>No tablet found. Try searching for another name.</p>";
+            }
+        }
+    </script>
+        </div>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Medicines</a>
+            <a href="#">Prescription</a>
+            <a href="#">Contact Doctor</a>
+            <a href="#">Login</a>
+        </nav>
+    </header>
+
+    <!-- Main Section -->
+    <main>
+        <h2>Available Medicines</h2>
+        <div class="products-grid">
+            <!-- Product Card -->
+            <div class="product-card">
+                <h3>Paracetamol</h3>
+                <p>Paracetamol is a widely used medication for the relief of mild to moderate pain and to reduce fever. It is commonly used to treat headaches, muscle aches, menstrual cramps, and minor arthritis. It is also frequently used to reduce fever in people with colds and other infections.</p>
+                <!-- Overview Section-->
+                 <h3>Overview</h3>
+                 <p><strong>Generic Name:</strong>Paracetamol</p>
+                 <p><strong>Brand Name:</strong>Tylenol, Panadol</p>
+                 <p><strong>Strength:</strong>500mg (tablet form)</p>
+                 <p><strong>Form:</strong>Tablet, Oral Suspension, Suppository</p>
+            <!-- Dosage Section -->
+                <h3>Dosage Information</h3>
+                <ul>
+                    <li>Adults and children over 12 years: 1 tablet (500mg) every 4 to 6 hours as needed. Do not exceed 4 grams (8 tablets) in 24 hours.</li>
+                    <li>Children 6 to 12 years: 1/2 to 1 tablet (250-500mg) every 4 to 6 hours as needed. Do not exceed 2 grams (4 tablets) in 24 hours.</li>
+                    <li>Do not take with other medications that contain paracetamol to avoid overdose.</li>
+                    <li>Take with or without food. Swallow the tablet whole with a glass of water.</li>
+                    <li>Take with or without food. If you experience stomach discomfort, it is recommended to take paracetamol with food.</li>
+                    <li>Do not exceed the maximum daily dose, as overdose can lead to liver damage.</li>
+                    <li>If pain or fever persists for more than 3 days, or if symptoms worsen, consult a healthcare provider.</li>
+                </ul>
+                <!-- Precautions Section -->
+            <h3>Precautions</h3>
+            <ul>
+                <li>Avoid alcohol consumption as it may increase the risk of liver damage.</li>
+                <li>Do not exceed the recommended dosage, as overdose can lead to liver failure.</li>
+                <li>Use with caution in individuals with liver or kidney disease.</li>
+                <li>Consult a healthcare provider before using during pregnancy or breastfeeding.</li>
+                <li>If you have a history of chronic alcohol use, talk to your doctor before taking paracetamol.</li>
+                <li>Paracetamol should not be taken with other medications containing paracetamol (including cold or flu medications) without first consulting a healthcare provider.</li>
+                <li>If you are pregnant or planning to become pregnant, consult a healthcare provider before using paracetamol to ensure it is safe for your specific situation.</li>
+                <li>Consult a healthcare provider before using paracetamol during breastfeeding, as it passes into breast milk in small amounts but is generally considered safe.</li>
+            </ul>
+            <!-- Side Effects Section -->
+             <h3>Side Effects</h3>
+             <ul>
+                <li><strong>Common:</strong> Nausea, stomach upset, loss of appetite.</li>
+                <li><strong>Severe:</strong> Allergic reactions such as skin rash, swelling of the face or throat, difficulty breathing, or anaphylaxis.</li>
+                <li><strong>Serious:</strong> Liver damage (signs include yellowing of the skin or eyes, dark urine, severe fatigue, and abdominal pain).</li>
+                <li><strong>Rare:</strong> Severe skin reactions, including blistering or peeling of the skin (Stevens-Johnson Syndrome, Toxic Epidermal Necrolysis).</li>
+            </ul>
+        </div>
+            <!-- Product Card -->
+            <div class="product-card">
+                <h3>Amoxicillin</h3>
+                <p>Amoxicillin is a commonly prescribed antibiotic used to treat a variety of bacterial infections. It is part of the penicillin class of drugs and works by inhibiting the growth of bacteria.Amoxicillin is effective against a wide range of bacterial organisms and is often prescribed as a first-line treatment for many common bacterial infections.</p>
+                <!-- Overview Section-->
+                <h3>Overview</h3>
+                <p><strong>Generic Name:</strong>Amoxicillin</p>
+                <p><strong>Brand Name:</strong>Amoxil, Moxatag, Trimox</p>
+                <p><strong>Strength:</strong>500mg (capsule or tablet form)</p>
+                <p><strong>Form:</strong>Tablet, Capsule, Oral Suspension</p>
+                <!-- Dosage Section -->
+        <h3>Dosage Information</h3>
+        <ul>
+        <li>Adults and children over 12 years: 1 tablet (500mg) every 8 hours. The exact dosage depends on the type and severity of infection.</li>
+        <li>Children 6 to 12 years: 1/2 tablet (250mg) every 8 hours. Dosage can vary based on the infection type.</li>
+        <li>For severe infections, higher doses may be prescribed by your healthcare provider.</li>
+        <li>Take with or without food, but ensure to complete the full prescribed course of antibiotics even if you feel better.</li>
+        <li>Do not skip doses or stop the medication without consulting a healthcare provider.</li>
+        <li>Take the medication as prescribed by your doctor, and complete the full course, even if symptoms improve before finishing the prescribed duration.</li>
+        <li>Amoxicillin can be taken with or without food. If you experience an upset stomach, it is recommended to take it with food.</li>
+        </ul>
+        <!-- Precautions Section -->
+        <h3>Precautions</h3>
+        <ul>
+        <li>Inform your doctor if you have a history of allergic reactions to penicillin or other antibiotics.</li>
+        <li>Use with caution in individuals with a history of kidney disease, as dosage adjustments may be required.</li>
+        <li>Amoxicillin should be used during pregnancy only if clearly needed, and only under the guidance of a healthcare provider.</li>
+        <li>Consult a healthcare provider before use during breastfeeding, as it can pass into breast milk.</li>
+        <li>Avoid taking amoxicillin with other medications containing similar antibiotics to prevent interactions.</li>
+        <li>Do not use for viral infections such as the common cold or flu, as it will not be effective.</li>
+        </ul>
+        <!-- Side Effects Section -->
+        <h3>Side Effects</h3>
+        <ul>
+        <li><strong>Common:</strong> Nausea, vomiting, diarrhea, mild skin rash.</li>
+        <li><strong>Severe:</strong> Allergic reactions such as hives, difficulty breathing, or swelling of the face, lips, or throat.</li>
+        <li><strong>Serious:</strong> Liver problems (signs include yellowing of the skin or eyes, dark urine, and severe fatigue), severe diarrhea (with or without blood).</li>
+        <li><strong>Rare:</strong> Severe skin reactions (such as blistering or peeling) or extreme fatigue (may indicate a blood disorder). Serious gastrointestinal issues or pseudomembranous colitis.</li>
+        </ul>
+        </div>
+                <!-- Product Card -->
+                <div class="product-card">
+                <h3>Ibuprofen</h3>
+                <p>Ibuprofen is a widely used medication for the relief of mild to moderate pain and to reduce inflammation and fever.  Ibuprofen is also frequently used to reduce fever in people with colds, flu, or other infections.</p>
+                <!-- Overview Section-->
+                <h3>Overview</h3>
+                <p><strong>Generic Name:</strong> ibuprofen</p>
+                <p><strong>Brand Name:</strong> Advil, Motrin, Nurofen</p>
+                <p><strong>Strength:</strong> 200mg, 400mg, 600mg (tablet, capsule, or liquid gel form)</p>
+                <p><strong>Form:</strong> Tablet, Capsule, Liquid Gel, Oral Suspension, Topical Gel</p>
+                <!-- Dosage Section -->
+                <h3>Dosage Information</h3>
+                <ul>
+                <li>Adults and children over 12 years: 1 tablet (200-400mg) every 4 to 6 hours as needed. Do not exceed 1,200mg (6 tablets) in 24 hours unless prescribed by a doctor.</li>
+                <li>Children 6 to 12 years: 1/2 to 1 tablet (100-200mg) every 4 to 6 hours as needed. Do not exceed 1,200mg (6 tablets) in 24 hours.</li>
+                <li>For severe pain, a doctor may prescribe higher doses of ibuprofen, up to 800mg per dose, depending on the condition.</li>
+                <li>Take with food or milk to reduce stomach irritation. Drink plenty of fluids while using ibuprofen.</li>
+                <li>Do not skip doses or take higher doses than recommended without consulting a healthcare provider.</li>
+                </ul>
+                <!-- Precautions Section -->
+                <h3>Precautions</h3>
+                <ul>
+                <li>Inform your doctor if you have a history of allergic reactions to ibuprofen, aspirin, or other NSAIDs (nonsteroidal anti-inflammatory drugs).</li>
+                <li>Use with caution in individuals with a history of kidney disease, heart disease, high blood pressure, or stomach ulcers.</li>
+                <li>Ibuprofen should be used during pregnancy only if clearly needed, particularly in the third trimester, as it may harm the baby. Always consult your healthcare provider before use during pregnancy.</li>
+                <li>Consult a healthcare provider before using ibuprofen during breastfeeding, as it may pass into breast milk in small amounts.</li>
+                <li>Avoid taking ibuprofen with other NSAIDs or medications that can irritate the stomach lining, such as aspirin, as this can increase the risk of gastrointestinal issues.</li>
+                <li>Do not use for viral infections such as the common cold, as it will not treat the underlying infection.</li>
+                </ul>
+                <!-- Side Effects Section -->
+                <h3>Side Effects</h3>
+                <ul>
+                <li><strong>Common:</strong> Upset stomach, nausea, heartburn, dizziness, headache.</li>
+                <li><strong>Severe:</strong> Allergic reactions such as rash, itching, swelling of the face or throat, or difficulty breathing.</li>
+                <li><strong>Serious:</strong> Stomach ulcers, gastrointestinal bleeding (signs include black or bloody stools, severe stomach pain), kidney problems (e.g., decreased urine output, swelling of the legs or feet).</li>
+                <li><strong>Rare:</strong> Liver damage (signs include yellowing of the skin or eyes), severe skin reactions (blistering or peeling), or heart attack or stroke (especially when used in high doses or long periods).</li>
+                </ul>
+                </div>
+            <!-- Product Card -->
+            <div class="product-card">
+                <h3>Atorvastatin</h3>
+                <p>Atorvastatin is a widely used medication for lowering high cholesterol levels and reducing the risk of heart disease, stroke, and other cardiovascular issues.</p>
+                <!-- Overview Section-->
+                <h3>Overview</h3>
+                <p><strong>Generic Name:</strong> atorvastatin</p>
+                <p><strong>Brand Name:</strong> Lipitor, Torvast, Atorva</p>
+                <p><strong>Strength:</strong> 10mg, 20mg, 40mg, 80mg (tablet form)</p>
+                <p><strong>Form:</strong> Tablet</p>
+                <!-- Dosage Section -->
+                <h3>Dosage Information</h3>
+                <ul>
+                <li>Adults: The usual starting dose is 10 to 20mg once daily. The dose can be adjusted by your healthcare provider based on cholesterol levels, with a maximum dose of 80mg per day.</li>
+                <li>For high cholesterol or other cardiovascular conditions, the dose may range from 10mg to 80mg per day, depending on individual needs.</li>
+                <li>Take atorvastatin once a day, at any time of day, with or without food. Try to take it at the same time each day.</li>
+                <li>Do not exceed the prescribed dose without consulting your doctor.</li>
+                <li>It is important to follow your diet and exercise recommendations while taking atorvastatin for the best results.</li>
+                </ul>
+                <!-- Precautions Section -->
+                <h3>Precautions</h3>
+                <ul>
+            <li>Inform your doctor if you have a history of liver disease, muscle disorders, or if you drink large amounts of alcohol.</li>
+            <li>Use with caution in individuals with a history of kidney disease, as dosage adjustments may be necessary.</li>
+            <li>Atorvastatin should be used during pregnancy only if clearly needed, as it can harm the unborn baby. It is not recommended during pregnancy, and women should avoid pregnancy while using atorvastatin.</li>
+            <li>Consult a healthcare provider before using atorvastatin during breastfeeding, as it can pass into breast milk in small amounts.</li>
+            <li>Avoid taking atorvastatin with certain medications (such as fibrates, certain antibiotics, or antifungal drugs), as these can increase the risk of serious side effects, including muscle problems.</li>
+            <li>Limit alcohol intake while using atorvastatin, as excessive alcohol consumption can increase the risk of liver damage.</li>
+            </ul>
+            <!-- Side Effects Section -->
+            <h3>Side Effects</h3>
+            <ul>
+            <li><strong>Common:</strong> Muscle pain, headache, nausea, diarrhea, constipation.</li>
+            <li><strong>Severe:</strong> Allergic reactions such as rash, itching, swelling of the face or throat, or difficulty breathing.</li>
+            <li><strong>Serious:</strong> Muscle problems (e.g., muscle pain, weakness, or tenderness), liver damage (signs include yellowing of the skin or eyes, dark urine, abdominal pain), kidney problems (e.g., decreased urine output, swelling of the legs or feet).</li>
+            <li><strong>Rare:</strong> Memory loss, confusion, or muscle breakdown (rhabdomyolysis). Severe allergic reactions and severe liver damage are rare but require immediate medical attention.</li>
+            </ul>
+            </div>
+        </div>
+    </main>
+
+  
+</body>
+</html>
