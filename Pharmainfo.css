@@ -1,0 +1,274 @@
+body
+{
+    background-repeat: no-repeat; 
+    background-position:center;
+    background-size:cover;
+    height:100%;
+    margin:0%;
+    background: linear-gradient( to bottom, #b5d4c2,#d7d7cc);
+    row-gap: 20px;
+}
+.nav
+{
+ align-items: end;
+}
+h1{
+    color:#fff;
+    font-family:cursive;
+    display: inline-block;
+    text-align:center;
+    margin-right: 5cm;
+}
+h2{
+   font-style: italic;
+    text-align:left;
+}
+ul {
+  list-style-type: none;
+  padding-left: 50px;
+  padding-top: 0px;
+  overflow:hidden;
+  height:100px;
+  background-color:#0077c0;
+}
+
+li {
+  display:inline-flex;
+  padding-bottom: 30px;
+}
+
+li a {
+  display:flex;
+  color: white;
+  text-align:end;
+  padding: 10px 10px;
+  padding-bottom: 20px;
+  padding-left: 50px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: #111;
+  width:fit-content;
+  height:max-content;
+  border-radius: 30px;
+}
+.top-inks{
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+.mc
+{
+  text-align:center;
+  align-content:center;
+  color:#fff;
+  font-style:italic;
+  font-size: medium;
+  border-radius:70%;
+  background-color: rgb(5, 12, 51);
+  height:60px;
+  width:230px;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+h3
+{
+   font-size: larger;
+    text-align:center;
+    font-style: italic;
+    color:rgb(230, 229, 235);
+}
+h5{
+   font-size: medium;
+   text-align: center;
+   font-style: italic;
+   font-family: cursive;
+}
+p
+{
+    font-size: larger;
+    text-align:center;
+  font-family:cursive;
+    font-style: italic;
+}  
+section.a
+{
+text-align: left;
+ font-family:cursive;
+ line-height: 0cm;
+ font-style: italic;
+} 
+div.info
+{
+  font-family:cursive;
+  font-style: italic;
+  font-size: larger;
+  font-weight: bold;
+}
+.row
+{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+ row-gap: 30px;
+ column-gap: 80px;
+ padding-top: 30px;
+ text-align: center !important;
+ justify-content: center !important;
+ width:50%;
+ margin:0 auto;
+}
+
+.card {
+  width: 17em;
+  height: 22.5em;
+  background: #0077c0;
+  transition: 1s ease-in-out;
+  clip-path: polygon(30px 0%, 100% 0, 100% calc(100% - 30px), calc(100% - 30px) 100%, 0 100%, 0% 30px);
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card span {
+  font-weight: bold;
+  color: white;
+  text-align: center;
+  display: block;
+  font-size: 1em;
+}
+
+.card .info {
+  font-weight: 400;
+  color: white;
+  display: block;
+  text-align: center;
+  font-size: 0.72em;
+  margin: 1em;
+}
+
+.card .img {
+  width: 4.8em;
+  height: 4.8em;
+  background: white;
+  border-radius: 15px;
+  margin: auto;
+}
+
+.card .share {
+  margin-top: 1em;
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+}
+
+.card a {
+  color:#000;
+  transition: .4s ease-in-out;
+}
+.card button {
+  padding: 0.8em 1.7em;
+  display: block;
+  margin: auto;
+  border-radius: 25px;
+  border: none;
+  font-weight: bold;
+  background: #ffffff;
+  color: rgb(0, 0, 0);
+  transition: .4s ease-in-out;
+}
+
+.see-all 
+{
+display: flex;
+align-items: center;
+justify-content: center;
+margin-top: 40px;
+text-align: center;
+}
+.see-all a
+{
+background-color: rgb(0, 0, 0);
+padding: 6px;
+border-radius: 50px;
+color:#fff;
+text-decoration: none;
+}
+.image {
+  display:block;
+  width: 100%;
+  height: auto;
+}
+.see-all a
+{
+  background-color: rgb(0, 0, 0);
+  padding: 6px;
+  border-radius: 50px;
+  color:#fff;
+  text-decoration: none;
+}
+.cards
+{
+  width: 400px;
+  height:300px;
+  box-shadow: 0 50px 50px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  text-align: center;
+  display: inline-block;
+  margin:5px 5px 5px 5px;
+}
+div.container {
+  padding: 10px;
+}
+.md img
+{  
+  align-content: center;
+  align-items: center;
+  border-radius:50%;
+  width:150px;
+  height:150px;
+  margin:10px;
+   
+}
+.footer
+{
+ background:linear-gradient(to bottom,#0266a4,#4b4343);
+width: 100%;
+width: 100%;
+display:grid;
+}
+.footer a
+{
+  color:#fff;
+  font-style:italic;
+  font-family: cursive;
+  font-weight: 500;
+  column-gap:0px;
+ text-align: justify;
+}
+footer h1
+{ 
+  color:#fff;
+  height:max-content;
+  font-style:italic;
+  font-family: cursive;
+  font-weight: 500;
+  display:block;
+  
+}
+.footer p
+{
+  color:#fff;
+  width:400px;
+  font-style:italic;
+  font-family: cursive;
+  font-weight: 500;
+  text-align: justify;
+  padding-left: 400px;
+}
+ .grid-container
+{
+  display: grid;
+  justify-content: space-evenly;
+}
