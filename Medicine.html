@@ -3,84 +3,112 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicine Information</title>
+    <title>Pharma Info</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        /* General Styles */
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f9f9f9;
+            box-sizing: border-box;
         }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
         header {
             background-color: #0077cc;
             color: white;
-            padding: 10px 20px;
+            padding: 20px;
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
         }
         header h1 {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
         }
         header input {
-            padding: 8px;
-            width: 50%;
+            width: 100%;
+            padding: 10px;
             border: none;
             border-radius: 5px;
         }
-        nav {
-            margin-top: 10px;
+        header nav {
+            display: flex;
+            gap: 15px;
         }
-        nav a {
+        header nav a {
+            font-size: 1rem;
             color: white;
-            text-decoration: none;
-            margin: 0 10px;
-            font-size: 0.9rem;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
         }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
         main {
             padding: 20px;
         }
-        .medicine-header {
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
             background-color: white;
             padding: 20px;
             border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
-        .medicine-header h2 {
-            margin: 0;
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
-        .medicine-header .badge {
-            display: inline-block;
-            background-color: #e0f7fa;
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
             color: #0077cc;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            margin-top: 5px;
         }
-        .tabs {
-            margin-top: 20px;
-        }
-        .tab {
-            display: inline-block;
-            padding: 10px 20px;
-            margin-right: 5px;
-            background-color: #e0f7fa;
-            color: #0077cc;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .tab.active {
+        .product-card button {
             background-color: #0077cc;
             color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
         }
-        .tab-content {
-            margin-top: 20px;
-            background-color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        .product-card button:hover {
+            background-color: #005fa3;
         }
+
+        /* Footer Styles */
         footer {
             background-color: #f1f1f1;
             text-align: center;
@@ -93,81 +121,364 @@
             text-decoration: none;
             margin: 0 10px;
         }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <h1>PharmaInfo</h1>
-        <input type="text" placeholder="Search for medicines, symptoms...">
-        <nav>
-            <a href="Medicines.html">Home</a>
-            <a href="#">Medicines</a>
-            <a href="#">FAQ</a>
-            <a href="#">Contact Us</a>
-        </nav>
-    </header>
-
-    <main>
-        <div class="medicine-header">
-            <h2>Paracetamol</h2>
-            <span class="badge">Analgesic</span>
-            <span class="badge">Antipyretic</span>
-        </div>
-
-        <div class="tabs">
-            <div class="tab active" onclick="showTab('overview')">Overview</div>
-            <div class="tab active" onclick="showTab('usage')">Usage</div>
-            <div class="tab active" onclick="showTab('precautions')">Precautions</div>
-            <div class="tab active" onclick="showTab('side-effects')">Side Effects</div>
-            <div class="tab active" onclick="showTab('storage')">Storage</div>
-        </div>
-
-        <div id="overview" class="tab-content" style="display:inline-block">
-            <h3>Overview</h3>
-            <p><strong>Drug Composition:</strong> Paracetamol 500mg</p>
-            <p><strong>Category:</strong> Over-the-counter (OTC)</p>
-        </div>
-
-        <div id="usage" class="tab-content" style="display:inline-block">
-            <h3>Usage</h3>
-            <p><strong>Indications:</strong> Fever, mild to moderate pain.</p>
-            <p><strong>Dosage:</strong> 1 tablet every 4-6 hours. Do not exceed 4g per day.</p>
-        </div>
-
-        <div id="precautions" class="tab-content" style="display:inline-block">
-            <h3>Precautions</h3>
-            <p>Not suitable for individuals with liver disorders.</p>
-            <p>Avoid alcohol consumption while taking this medicine.</p>
-        </div>
-
-        <div id="side-effects" class="tab-content" style="display:inline-block">
-            <h3>Side Effects</h3>
-            <p><strong>Common:</strong> Nausea, dizziness.</p>
-            <p><strong>Severe:</strong> Allergic reactions, liver damage (in case of overdose).</p>
-        </div>
-
-        <div id="storage" class="tab-content" style="display:inline-block">
-            <h3>Storage</h3>
-            <p>Store at room temperature (15-25°C). Keep away from moisture and direct sunlight.</p>
-        </div>
-    </main>
-
-    <footer>
-        <p>© 2024 PharmaInfo. All rights reserved.</p>
-        <p><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a> | <a href="#">Disclaimer</a></p>
-    </footer>
+        <h1>Pharma Info</h1>
+        <div class="search-bar">
+            <!-- Search Bar Section -->
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search Medicine name...">
+                <button onclick="searchTablet()" class="search-button">Search</button>
+            </div>
+            
+            <!-- Display Search Results -->
+    <div class="search-results" id="searchResults">
+        <!-- Results will be shown here -->
+    </div>
 
     <script>
-        function showTab(tabId) {
-            const tabs = document.querySelectorAll('.tab');
-            const contents = document.querySelectorAll('.tab-content');
+        function searchTablet() {
+            var searchQuery = document.getElementById('searchInput').value.toLowerCase();
+            var resultsDiv = document.getElementById('searchResults');
+            var tabletName = "Paracetamol".toLowerCase();  // Example tablet name
 
-            tabs.forEach(tab => tab.classList.remove('active'));
-            contents.forEach(content => (content.style.display = 'hover'));
-
-            document.querySelector(`.tab.${tabId}`).classList.add('active');
-            document.getElementById(tabId).style.display = 'block';
+            if (searchQuery === tabletName) {
+                resultsDiv.innerHTML = "<p><strong>Tablet Found:</strong> paracetamol </p><p>Details: Paracetamol is a widely used medication for the relief of mild to moderate pain and to reduce fever. </p>";
+            } else {
+                resultsDiv.innerHTML = "<p>No tablet found. Try searching for another name.</p>";
+            }
         }
     </script>
+        </div>
+    </header>
+
+
+
+
+
+<div class="medicine-details" id="medicineDetails">
+    <!-- Medicine details will be dynamically loaded here -->
+</div>
+
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('children')"><button>Children</button></a>
+    <a href="#" class="tab-button" onclick="showData('adults')"><button>Adults</button></a>
+    <a href="#" class="tab-button" onclick="showData('elderly')"><button>Elderly</button></a>
+    <a href="#" class="tab-button" onclick="showData('pregnant')"><button>Pregnant Women</button></a>
+</div>
+<!-- Content for Children -->
+<div id="childrenContent" class="content">
+    
+</div>
+
+<!-- Content for Adults -->
+<div id="adultsContent" class="content">
+    
+</div>
+
+<!-- Content for Elderly -->
+<div id="elderlyContent" class="content">
+    
+</div>
+
+<!-- Content for Pregnant Women -->
+<div id="pregnantContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+    paracetamol: {
+        name: 'Paracetamol',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYKIwZmOftOcMs6dKiAdfGNFkMWnitl94MFg&s',
+        description: 'Paracetamol, also known as acetaminophen, is a commonly used analgesic (pain reliever) and antipyretic (fever reducer) medication. It is available over-the-counter and is widely used for treating mild to moderate pain and reducing fever.',
+        dosage: {
+            children: '<ul><li>1. 6 months to 2 years: 1/2 tablet (250 mg) every 4-6 hours. Max 2g per day.</li>' +
+                  '<li>2. 2 to 4 years: 1 tablet (500 mg) every 4-6 hours. Max 2g per day.</li>' +
+                  '<li>3. 4 to 6 years: 1 tablet (500 mg) every 4-6 hours. Max 3g per day.</li>' +
+                  '<li>4. 6 to 8 years: 1 tablet (500 mg) every 4-6 hours. Max 3g per day.</li>' +
+                  '<li>5. 8 to 10 years: 1 tablet (500 mg) every 4-6 hours. Max 3g per day.</li>' +
+                  '<li>6. 10 to 12 years: 1 tablet (500 mg) every 4-6 hours. Max 4g per day.</li>' +
+                  '</ul>',
+            adults: '<ul><li>1. Adults (including elderly): 1 tablet (500mg) every 4 to 6 hours as needed. Do not exceed 4 grams (8 tablets) in 24 hours.</li>' +
+                  '<li>2. If liver or kidney issues are present, consult a healthcare provider for possible adjustments to dosage.</li>' +
+                    '<li>3. Do not give paracetamol with other medications that contain paracetamol to avoid overdose.</li>' +
+                    '<li>4. Take with or without food. If stomach discomfort occurs, it is recommended to take paracetamol with food.</li>' +
+                    '<li>5. Do not exceed the maximum daily dose. Overdose can lead to serious liver damage.</li>' +
+                    '<li>6. If symptoms persist for more than 3 days or worsen, consult a healthcare provider immediately.</li>' +
+                    '</ul>',
+            elderly: '<ul><li>1. Increase susceptibility to chronic conditions like arthritis, heart disease, hypertension, diabetes, and dementia.</li>' +
+                    '<li>2.Slower metabolism and decreased kidney/liver function may require adjusted dosages for medications.</li>' +
+                    '<li>3. Important to focus on nutrient-rich foods such as those high in cacium, vitamin D, and fiber to support bone health, immune function, and digestive health.</li>' +
+                    '<li>4.Regular exercise is essential to maintain muscle mass, joint mobility, and overall health, with activities tailored to individual fitness levels.</li>' +
+                    '</ul>',
+            pregnant: '<ul><li>1. Increase susceptibility to chronic conditions like arthritis, heart disease, hypertension, diabetes, and     dementia.</li>' +
+                    '<li>2. Slower metabolism and decreased kidney/liver function may require adjusted dosages for medications.</li>' +
+                    '<li>3. Regular exercise is essential to maintain muscle mass, joint mobility, and overall health, with activities tailored to individual fitness levels.</li>' +
+                    '<li>4. Mental wellness is key, as older adults may experience cognitive decline, depression, or anxiety. Social enagement and mental stimulation help preserve cognitive function.</li>' +
+                    '</ul>',
+        },
+        price: 'Rs.50'
+    },
+    Sitagliptin: {
+        name: 'Sitagliptin',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp1dWvRr1pLdCWcrsgJI5L2gVXJ-BS297mqw&s',
+        description: 'Sitagliptin is an oral medication used to manage type 2 diabetes. It belongs to a class of drugs called DPP-4 inhibitors (Dipeptidyl Peptidase-4 inhibitors). Sitagliptin works by regulating the levels of insulin your body produces after eating, thus helping to control blood sugar levels.',
+        dosage: {
+            children: '<ul><li>1. Sitagliptin is generally not recommended for children under 18 years old. Consult with a healthcare provider for specific recommendations regarding pediatric use.</li>' +
+                    '<li>2. For children aged 18 years and above, follow adult dosage guidelines (100mg once daily).</li>' +
+                    '<li>Always consult with a healthcare provider for proper pediatric use and possible adjustments.</li>' +
+                    '</ul>',
+            adults: '<ul><li>3. Recommended dose: 100mg once daily, with or without food.</li>' +
+                    '<li>4. May be used alone or in combination with other diabetes medications (e.g., metformin, sulfonylureas).</li>' +
+                    '<li>5. Dosage adjustment may be required in cases of kidney problems (reduce to 50mg or 25mg once daily depending on kidney function).</li>' +
+                    '<li>6. If a dose is missed, take it as soon as you remember, unless almost time for the next dose.</li>' +
+                    '</ul>',
+            elderly: '<ul><li>1. The recommended dose for elderly individuals is 100mg once daily.</li>' +
+                    '<li>2. However, dosage adjustments may be necessary for those with impaired kidney function.</li>' +
+                    '<li>3. Elderly patients should be monitored for kidney function to ensure proper dosage.</li>' +
+                '</ul>',
+            pregnant: '<ul><li>1. Consult a healthcare provider before using Sitagliptin during pregnancy, as safety has not been fully established.</li>' +
+                '<li>2. If pregnant or planning to become pregnant, inform your doctor to discuss other treatment options for managing type 2 diabetes.</li>' +
+                '<li>3. Monitor blood sugar levels closely during pregnancy to ensure proper control of blood glucose levels.</li>' +
+                '</ul>',
+        },
+        price: 'Rs.300'
+    },
+    calpol: {
+        name: 'Calpol',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR--6T_FEgUphtV_psAeBuPp4bkYXFmhBo6kA&s',
+        description: 'Calpol is a popular brand of paracetamol (acetaminophen) that is primarily used to relieve fever and pain in children. It is available in various forms, including liquids, syrups, and chewable tablets, and is commonly used to treat a range of common ailments like colds, headaches, toothaches, sore throats, and mild pain from injuries or teething.',
+        dosage: {
+            children: '<ul><li>1. Children 6 months to 2  years: 2.5ml (120mg) every 4 to 6 hours as needed. Do not exceed 4 doses in 24 hours.</li>' +
+                        '<li>2. Children 2 to 6 years: 5ml (240mg) every 4 to 6 hours as needed. Do not exceed 4 doses in 24 hours.</li>' +
+                        '<li>3. Children 6 to 12 years: 10ml (480mg) every 4 to 6 hours as needed. Do not exceed 4 doses in 24 hours.</li>' +
+                        '<li>4. Do not exceed the recommended daily dose. Overdose can cause serious liver damage.</li>' +
+                '</ul>',
+            adults: '<ul><li>1. Adults: 500mg (1 tablet) every 4 to 6 hours as needed. Do not exceed 4 grams (8 tablets) in 24 hours.</li>' +
+                        '<li>2. In case of severe pain or fever, consult with a healthcare provider for additional guidance on dose adjustments.</li>' +
+                        '<li>3. Do not take more than the recommended dosage to avoid risk of liver damage.</li>' +
+                        '<li>4. If you miss a dose, take it as soon as you remember unless its almost time for the next dose. Do not double the dose.</li>' +
+                '</ul>',
+            elderly: '<ul><li>1. The recommended dosage for elderly individuals is similar to adults (500mg every 4 to 6 hours.)</li>' +
+                        '<li>2. However, dosage adjustments may be needed in those with reduced kidney or liver function.</li>' +
+                        '<li>3. Elderly patients should consult with a healthcare provider to assess their individual needs and ensure safety when using Calpol.</li>' +
+                        '<li>4. Regular monitoring for kidney and liver function is important in elderly patients to avoid complications.</li>' +
+                '</ul>',
+            pregnant: '<ul><li>1. Consult with a healthcare provider before taking Calpol during pregancy.</li>' +
+                        '<li>2. Avoid exceeding the recommended daily dose, and do not combine with other medications containing paracetamol.</li>' +
+                        '<li>3. Calpol (Paracetamol) is generally considered safe during pregancy when taken at recommended does for short periods.</li>' +
+                        '<li>4. It is advised to take the lowest effective dose for the shortest time necessary.</li>' +
+                '</ul>',
+        },
+        price: 'Rs.30'
+    },
+    vitaminD: {
+        name: 'Vitamin D',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAq7Cx-ORTjMIn6cZZiHFgcoPhch9qgUL6ng&s',
+        description: 'Vitamin D is a fat-soluble vitamin that plays a crucial role in maintaining healthy bones and teeth, supporting the immune system, and regulating calcium and phosphorus levels in the blood. It is sometimes called the "sunshine vitamin" because the body can produce it when the skin is exposed to sunlight.',
+        dosage: {
+            children: '<ul><li>1. Vitamin D is essential for bone health, but supplementation should be done carefully for children.</li>' +
+                        '<li>2. For infants 0-12 months: 400 IU per day (as recommended by health authorities).</li>' +
+                        '<li>3. For children aged 118 years: 600 IU per day is generally sufficient.</li>' +
+                        '<li>4. Always consult a pediatrician before starting Vitamin D supplements for children.</li>' +
+                '</ul>',
+            adults: '<ul><li>1. Recommended dose for adults (19-70 years): 600 IU per day.</li>' +
+                        '<li>2. For adults over 70 years: 800 IU per day.</li>' +
+                        '<li>3. Vitamin D can be obtained from sunlight, diet, or supplements (Vitamin D3 is more potent).</li>' +
+                        '<li>4. If there is a deficiency, higher doses may be prescribed by a healthcare provider.</li>' +
+                '</ul>',
+            elderly: '<ul><li>1. For elderly individuals (over 70 years) : The recommended dose is 800 IU per day to support bone health.</li>' +
+                        '<li>2. Those with osteoporosis or vitamin D deficiency may need higher doses as prescribed by a healthcare provider.</li>' +
+                        '<li>3. It is important for elderly people to maintain adequate levels of vitamin D for better bone density and overall health.</li>' +
+                '</ul>',
+            pregnant: '<ul><li>1. For pregant women, the recommended dose is 600 IU per day to support the health of both mother and baby.</li>' +
+                        '<li>2. It is important for pregant women to ensure adequate intake to support fetal bone development.</li>' +
+                        '<li>3. Consult with a healthcare provider to determine if additional Vitamin D is needed, especially if there is a deficiency or high-risk pregancy.</li>' +
+                '</ul>',
+        },
+        price: 'Rs.130'
+    },
+    AZirta500mg: {
+        name: 'Azirta',
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj0tZFgDCGionGZ0GRJ3D9VVduo8EPgUXdkw&s',
+        description: 'Azirta 500 mg is a brand name for a medication that contains Azithromycin, an antibiotic used to treat a variety of bacterial infections. Azithromycin is a macrolide antibiotic that works by inhibiting the growth of bacteria, thereby preventing the spread of infection in the body.',
+        dosage: {
+            children: '<ul><li>1. Azithromycin is generally not recommended for children under 6 months of age.</li>' +
+                        '<li>2. For children aged 6 months to 12 years, the dose is typically 10mg/kg body weight on the first day, followed by 5mg/kg for the next 4 days.</li>' +
+                        '<li>3. Always consult a pediatrician before starting Azithromycin for children, as dosage can vary based on the type of infection and weight.</li>' +
+                '</ul>',
+            adults: '<ul><li>1. Typical dosage for adults is 500mg on the first day, followed by 250mg daily for the next 4 days.</li>' +
+                        '<li>2. Take Azithromycin on an empty stomach, at least 1 hour before or 2 hours after eating, for optimal absorption.</li>' +
+                        '<li>3. Azithromycin is used to treat various bacterial infections like pneumonia, bronchitis, and skin infections.</li>' +
+                        '<li>4. Always complete the full course of antibiotics to ensure the infection is fully treated.</li>' +
+                '</ul>',
+            elderly: '<ul><li>1. The typical dose for elderly patients is the same as for adults (500mg on day 1, followed by 250 mg for the next 4 days).</li>' +
+                        '<li>2. Monitor for any adverse effects, particularly in those with liver or kidney conditions.</li>' +
+                        '<li>3. For elderly individuals with kidney problems, a dose adjustment may be necessary. Consult a healthcare provider before use.</li>' +
+                '</ul>',
+            pregnant: '<ul><li>1. Azithromycin is categorized as pregancy Category B. It should be used only if the potential benefit justifies the potential risk to the fetus.</li>' +
+                        '<li>2. It may be prescribed to treat infections during pregancy if the benefits outweigh the risks.</li>' +
+                        '<li>3. Consult with a healthcare provider before taking Azithromycin during pregancy, especially in the first trimester.</li>' +
+                '</ul>',
+    },
+    price: 'Rs.250'
+},
+            FolicAcid5mg: {
+            name: 'Folic Acid 5mg',
+            img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRnmgGCPGPXlA7441RrGimVL1_Goqv4qzSkOA&s',
+            description: 'Folic Acid 5 mg is a higher-dose form of folic acid, a type of Vitamin B9 that plays an essential role in many bodily functions, especially in the production of red blood cells, the formation of DNA, and the growth of cells and tissues. It is especially important during periods of rapid cell division and growth, such as pregnancy, infancy, and adolescence.',
+            dosage: {
+            children: '<ul><li>1. Typical dosage for children aged 1-3 years: 200 mcg per day.</li>' +
+                        '<li>2. For children aged 4-8 years: 300 mcg per day.</li>' +
+                        '<li>3. For children aged 9-13 years: 400 mcg per day.</li>' +
+                        '<li>4. Folic acid supplementation for children should always be based on the recommendation of a pediatrician.</li>' +
+                '</ul>',
+            adults: '<ul><li>1. The standard dose for adults (for general health and prevention) is 400 mcg per day.</li>' +
+                        '<li>2. For treating folate deficiency or certain types of anemia, higher doses like 5 mg per day may be prescribed.</li>' +
+                        '<li>3. Adults should also maintain a balanced diet alongside supplementation to ensure adequate folate intake.</li>' +
+                        '<li>4. It is important to follow the doctor’s instructions for the duration and dosage of Folic Acid.</li>' +
+                '</ul>',
+            elderly: '<ul><li>1. Older adults may need higher doses of folic acid (e.g., 5 mg per day) if they have a deficiency or certain health conditions.</li>' +
+                        '<li>2. Folic acid supplementation in elderly individuals should be done under the supervision of a healthcare provider.</li>' +
+                        '<li>3. Higher doses of Folic Acid may be required for elderly individuals who suffer from malabsorption issues or are on certain medications.</li>' +
+                '</ul>',
+            pregnant: '<ul><li>1. Consult a healthcare provider to ensure proper dosage and supplementation during pregnancy.</li>' +
+                        '<li>2. The recommended dose during pregnancy is typically 400-800 mcg per day, but in case of a deficiency or high-risk pregnancy, a healthcare provider may recommend 5 mg per day.</li>' +
+                        '<li>3. Folic acid should be taken before conception and during the first trimester of pregnancy for optimal results.</li>' +
+                        '<li>4. Folic Acid is essential during pregnancy to support fetal development, especially in the early stages to reduce the risk of neural tube defects.</li>' +
+                '</ul>',
+    },
+    price: 'Rs.100'
+},
+};
+
+    
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('childrenContent').style.display = 'none';
+    document.getElementById('adultsContent').style.display = 'none';
+    document.getElementById('elderlyContent').style.display = 'none';
+    document.getElementById('pregnantContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'children') {
+            document.getElementById('childrenContent').style.display = 'block';
+            document.getElementById('childrenContent').innerHTML = `<p>${medicineData.dosage.children}</p>`;
+        } else if (type === 'adults') {
+            document.getElementById('adultsContent').style.display = 'block';
+            document.getElementById('adultsContent').innerHTML = `<p>${medicineData.dosage.adults}</p>`;
+        } else if (type === 'elderly') {
+            document.getElementById('elderlyContent').style.display = 'block';
+            document.getElementById('elderlyContent').innerHTML = `<p>${medicineData.dosage.elderly}</p>`;
+        } else if (type === 'pregnant') {
+            document.getElementById('pregnantContent').style.display = 'block';
+            document.getElementById('pregnantContent').innerHTML = `<p>${medicineData.dosage.pregnant}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
 </body>
 </html>
