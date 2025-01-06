@@ -1,61 +1,42 @@
-div.info
-{
-  font-family:cursive;
-  font-style: italic;
-  font-size: larger;
-  font-weight: bold;
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background-color: #f9f9f9;
 }
-.main-section1
-{
-  display:grid;
-  grid-template-columns:repeat(3 , 1fr);
- row-gap: 30px;
- column-gap: 40px;
- padding-top: 30px;
- text-align: center !important;
- justify-content: center !important;
- width:80%;
- margin:0 auto;
+header {
+  background-color: #284860;
+  color: white;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.medication-card
-{
-display: inline-block;
-  background-color: #fff;
-  border-radius: 15px;
-  box-shadow: 0 4px 6px black;
-  padding:4px;
-  text-align:center;
-  width:300px;
-  height:230px;
-  column-gap: 20px;
+header h1 {
+  font-size: 1.5rem;
 }
-.medication-card a
-{
-  margin:10px 0;
-  font-size: 1.2rem;
-  color:#0077c0;
+header input {
+  padding: 8px;
+  width: 50%;
+  border: none;
+  border-radius: 5px;
 }
-.medication-card h3
+.alphabets
 {
- color:rgb(5, 37, 74);
+  display:inline-block;
+   text-decoration: none;
+   padding-left: 250px;
+   padding-top: 30px;
+   text-decoration: none;
 }
-.medication-card h2
+.alpha
 {
-  color:rgb(117, 5, 5);
-  text-decoration: line-through;
+ color:black;
+ text-decoration: none;
+ font-size: larger;
+ font-family: cursive;
+ text-decoration: none;
 }
-.see-all 
+button.a
 {
- display:flex;
- align-items: center;
- justify-content: center;
-padding-left: 150%;
-}
-.see-all a
-{
-background-color: rgb(0, 0, 0);
-padding: 6px;
-border-radius: 50px;
-color:#fff;
-text-decoration: none;
+  text-decoration:none;
 }
