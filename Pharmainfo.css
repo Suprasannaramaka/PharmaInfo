@@ -4,20 +4,60 @@ body
     background-position:center;
     background-size:cover;
     height:100%;
-    margin:0%;
+    margin:0;
     background: linear-gradient( to bottom, #b5d4c2,#d7d7cc);
     row-gap: 20px;
 }
-.nav
+/* Basic styling for the header and nav */
+header {
+  background-color:#05324e; /* Optional: background color */
+}
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+.logo-name {
+  font-size: 24px;
+  font-weight: bold;
+  color:#fff;
+  padding-right:30px;
+}
+.links ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+.links li {
+  margin-left: 20px;
+}
+
+.links a {
+  text-decoration: none;
+  color: #fff;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+}
+
+.links a img {
+  margin-right: 8px; /* Optional: adds space between image and link text */
+}
+.details
 {
- align-items: end;
+  text-decoration: none;
+  font-size: 16px;
+  display: flex;
 }
 h1{
     color:#fff;
     font-family:cursive;
     display: inline-block;
     text-align:center;
-    margin-right: 5cm;
+    margin-right: 15px;
 }
 h2{
    font-style: italic;
@@ -25,30 +65,26 @@ h2{
 }
 ul {
   list-style-type: none;
-  padding-left: 50px;
-  padding-top: 0px;
-  overflow:hidden;
-  height:100px;
-  background-color:#0077c0;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0;
+  padding:30px;
+  overflow: hidden;
 }
-
-li {
-  display:inline-flex;
-  padding-bottom: 30px;
+ li {
+  column-gap: 100px;
+  color:#fff;
+  float:left;
 }
-
-li a {
-  display:flex;
+ li a {
+  display:block;
   color: white;
-  text-align:end;
-  padding: 10px 10px;
-  padding-bottom: 20px;
-  padding-left: 50px;
+  align-items: end;
+padding:10px;
   text-decoration: none;
 }
-
-li a:hover {
-  background-color: #111;
+ul li a:hover {
+  background-color:#4b4343;
   width:fit-content;
   height:max-content;
   border-radius: 30px;
@@ -179,7 +215,6 @@ div.info
   color: rgb(0, 0, 0);
   transition: .4s ease-in-out;
 }
-
 .see-all 
 {
 display: flex;

@@ -4,172 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Medicines-B</title>
+    <link rel="stylesheet" href="Medicines.css"/>
+    <link rel="stylesheet" href="Medicine.css"/>
+    <link rel="stylesheet" href="Medicine names(A-Z).css">
 </head>
-<body>
+<header>
+    <h1>PharmaInfo</h1>
+    <input type="text" placeholder="Search for medicines, symptoms...">
+    <br>
+    </header>
     <style>
-        body {
-          font-family: Arial, sans-serif;
-          margin: 0;
-          padding: 0;
-          background-image:radial-gradient(#055CDD,#0E86D4,#68BBE3);
-          padding-top: 30px;
-          padding-bottom: 30px;
-          display:grid;
-      }
-      .row
-      { 
-      display:grid;
-      grid-template-columns: 1fr 1fr 1fr;
-      grid-gap:0 10px;
-      padding:0 3px;
-      padding-left: 30px;
-      padding-right: 30px;
-      }
-      .card
-      {
-          display:flexbox;
-          flex-direction: column;
-          background-color:#fff;
-          color:black;
-          border: #000 1px solid;
-          padding-bottom: 5px;
-      }
-      .card button {
-        display:flex;
-        margin: auto;
-        border-radius: 25px;
-        border: none;
-        font-weight:400;
-        font-size: small;
-        color: rgb(0, 0, 0);
-        background-color:#3d9bff;
-        transition: .4s ease-in-out;
-      }
-      h3
-      {
-       font-style: italic;
-       font-size:medium;
-       font-weight: 500;
-       text-align:center;
-      }
-      h5{
-          font-family: cursive;
-          font-size: medium;
-          text-align:center;
-      }
-      .alphabets
-      {
-          display:row;
-           text-decoration: none;
-           padding-left: 250px;
-           padding-top: 30px;
-           text-decoration: none;
-      }
-      .alpha
-      {
-         color:black;
-         text-decoration: none;
-         font-size: larger;
-         font-family: cursive;
-         text-decoration: none;
-      }
-      button.a
-      {
-          text-decoration:none;
-      }
-      button:hover{
-              background-color:#3d9bff;
-             }
-          </style> 
+   button:hover{
+    background-color:darkgrey;
+   }
+    </style>
+<body>
           <div class="row1">
-        <div class="alphabets">
-            <button><a href="Medicines-A.html"><span class="alpha">A</span></a></button>
-            <button><a href="Medicines-B.html"><span class="alpha">B</span></a></button>
-            <button><a href="Medicines-C.html"><span class="alpha">C</span></a></button>
-            <button><a href=""><span class="alpha">D</span></a></button>
-            <button><a href=""><span class="alpha">E</span></a></button>
-            <button><a href=""><span class="alpha">F</span></a></button>
-            <button><a href=""><span class="alpha">G</span></a></button>
-            <button><a href=""><span class="alpha">H</span></a></button>
-            <button><a href=""><span class="alpha">I</span></a></button>
-            <button><a href=""><span class="alpha">J</span></a></button>
-            <button><a href=""><span class="alpha">K</span></a></button>
-            <button><a href=""><span class="alpha">L</span></a></button>
-            <button><a href=""><span class="alpha">M</span></a></button>
-            <button><a href=""><span class="alpha">N</span></a></button>
-            <button><a href=""><span class="alpha">O</span></a></button>
-            <button><a href=""><span class="alpha">P</span></a></button>
-            <button><a href=""><span class="alpha">Q</span></a></button>
-            <button><a href=""><span class="alpha">R</span></a></button>
-            <button><a href=""><span class="alpha">S</span></a></button>
-            <button><a href=""><span class="alpha">T</span></a></button>
-            <button><a href=""><span class="alpha">U</span></a></button>
-            <button><a href=""><span class="alpha">V</span></a></button>
-            <button><a href=""><span class="alpha">W</span></a></button>
-            <button><a href=""><span class="alpha">X</span></a></button>
-            <button><a href=""><span class="alpha">Y</span></a></button>
-            <button><a href=""><span class="alpha">Z</span></a></button>
-        </div>
+            <div class="alphabets">
+                <button><a href="Medicines-A.html"><span class="alpha">A</span></a></button>
+                <button><a href="Medicines-B.html"><span class="alpha">B</span></a></button>
+                <button><a href="Medicines-C.html"><span class="alpha">C</span></a></button>
+                <button><a href="Medicines-D.html"><span class="alpha">D</span></a></button>
+                <button><a href="Medicines-E.html"><span class="alpha">E</span></a></button>
+                <button><a href="Medicines-F.html"><span class="alpha">F</span></a></button>
+                <button><a href="Medicines-G.html"><span class="alpha">G</span></a></button>
+                <button><a href="Medicines-H.html"><span class="alpha">H</span></a></button>
+                <button><a href=""><span class="alpha">I</span></a></button>
+                <button><a href=""><span class="alpha">J</span></a></button>
+                <button><a href=""><span class="alpha">K</span></a></button>
+                <button><a href=""><span class="alpha">L</span></a></button>
+                <button><a href=""><span class="alpha">M</span></a></button>
+                <button><a href=""><span class="alpha">N</span></a></button>
+                <button><a href=""><span class="alpha">O</span></a></button>
+                <button><a href=""><span class="alpha">P</span></a></button>
+                <button><a href=""><span class="alpha">Q</span></a></button>
+                <button><a href=""><span class="alpha">R</span></a></button>
+                <button><a href=""><span class="alpha">S</span></a></button>
+                <button><a href=""><span class="alpha">T</span></a></button>
+                <button><a href=""><span class="alpha">U</span></a></button>
+                <button><a href=""><span class="alpha">V</span></a></button>
+                <button><a href=""><span class="alpha">W</span></a></button>
+                <button><a href=""><span class="alpha">X</span></a></button>
+                <button><a href=""><span class="alpha">Y</span></a></button>
+                <button><a href=""><span class="alpha">Z</span></a></button>
+            </div>
     </div><br><br>
           <div class="row">
             <div class="card">
-            <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;">Bleocip 15IU Injection</h3>
-                <h5>Injection</h5>
+            <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;">Bleocip 15IU Injection</h3>
+                 <h5>Marketer:Cipla Ltd</h5>
+                <h5>SALT COMPOSITION:Bleomycin (15IU)</h5>
                 <h5>Alternatives:Bleowel15IU Injection</h5>
-                <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
+                <button><a href="Medicine.html" class="btn btn-info">More info</button></a>   
             </div>
             <div class="card">
-                <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/cropped/suh9cpr4ojpmmdbshw2a.jpg" alt="" style="align-content: center;padding-left: 100;">Betnovate-C Cream</h3>
-                    <h5>Cream</h5>
-                    <h5>Alternatives:
-                        Bactoderm C 0.1%/3% Cream,Valeratec 0.1%/3% Cream,Acplen C Cream</h5>
-                        <button><a href="Medicine.html" class="btn btn-primary">More info</button></a>
+                <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/cropped/suh9cpr4ojpmmdbshw2a.jpg" alt="" style="align-content: center;padding-left: 100;">Betnovate-C Cream</h3>
+                <h5>Marketer:Glaxo SmithKline Pharmaceuticals Ltd</h5>
+                <h5>SALT COMPOSITION:Povidone Iodine (2% w/v)</h5>
+                    <h5>Alternatives:Bactoderm C 0.1%/3% Cream,Valeratec 0.1%/3% Cream,Acplen C Cream</h5>
+                    <button><a href="Medicine.html" class="btn btn-info">More info</button></a>   
                 </div>
                 <div class="card">
-                    <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/e079893f4e0740288dc365557715fa42.jpg" alt="" style="align-content: center;padding-left: 100px;">Bro-Zedex</h3>
-                        <h5>Syrup</h5>
+                    <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/e079893f4e0740288dc365557715fa42.jpg" alt="" style="align-content: center;padding-left: 100px;">Bro-Zedex</h3>
+                    <h5>Marketer:Dr Reddy's Laboratories Ltd</h5>
+                    <h5>SALT COMPOSITION:Bromhexine (4mg) + Guaifenesin (50mg) + Menthol (2.5mg) + Terbutaline (1.25mg)</h5>
                         <h5>Alternatives:Crf X Syrup</h5>
                         <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
                     </div>
           </div><br><br><br>
           <div class="row">
             <div class="card">
-            <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/cropped/rvdebdxaajeckalhwlyh.jpg" alt="" style="align-content: center;padding-left: 100px;">Betadine 2% Gargle Mint</h3>
-                <h5>Syrup</h5>
+            <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/cropped/rvdebdxaajeckalhwlyh.jpg" alt="" style="align-content: center;padding-left: 100px;">Betadine 2% Gargle Mint</h3>
+            <h5>Marketer:Win-Medicare Pvt Ltd</h5>
+            <h5>SALT COMPOSITION:Povidone Iodine (2% w/v)</h5>
                 <h5>Alternatives:Mutadine,Amgargl</h5>
                 <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
             </div>
             <div class="card">
-                <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/cropped/yssbye7myd6dgld7wn2n.jpg" alt="" style="align-content: center;padding-left: 100px;">Brufen 400 Tablet</h3>
-                    <h5>Tablet</h5>
+                <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/cropped/yssbye7myd6dgld7wn2n.jpg" alt="" style="align-content: center;padding-left: 100px;">Brufen 400 Tablet</h3>
+                <h5>Marketer:Abbott</h5>
+                <h5>SALT COMPOSITION:Ibuprofen (400mg)</h5>
                     <h5>Alternatives:Ibugesic 400 Tablet,Maxofen Tablet,Novigan 400mg T</h5>
                     <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
                 </div>
                 <div class="card">
-                    <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_100,h_100,c_pad,q_auto,f_auto/cropped/k6esilwkexujhgoc0j7m.jpg" alt="" style="align-content: center;padding-left: 100px;"> Betadine 10% Solution</h3>
-                        <h5>Syrup</h5>
+                    <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_50,h_50,c_pad,q_auto,f_auto/cropped/k6esilwkexujhgoc0j7m.jpg" alt="" style="align-content: center;padding-left: 100px;">Betadine 10% Solution</h3>
+                    <h5>Marketer:Win-Medicare Pvt Ltd</h5>
+                    <h5>SALT COMPOSITION:Povidone Iodine (10% w/v)</h5>
                         <h5>Alternatives:Wokadine 10% Solution,Gleniguard Solution</h5>
                         <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
                     </div>
                 </div><br><br><br>
           <div class="row">
             <div class="card">
-            <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;"> Bdpalbo 75mg Capsule</h3>
-                <h5>Tablets</h5>
+            <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;"> Bdpalbo 75mg Capsule</h3>
+            <h5>Marketer:BDR Pharmaceuticals Internationals Pvt</h5>
+            <h5>SALT COMPOSITION:Palbociclib (75mg)</h5>
                 <h5>Alternatives:Palbo 75mg Capsule</h5>
                 <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
             </div>
             <div class="card">
-                <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;"> Bdpalbo 75mg Capsule</h3>
-                    <h5>Tablets</h5>
-                    <h5>Marketer:BDR Pharmaceuticals Internationals Pvt</h5>
+                <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;"> Bdpalbo 100mg Capsule</h3>
+                <h5>Marketer:BDR Pharmaceuticals Internationals Pvt</h5>
+                    <h5>SALT COMPOSITION:Palbociclib (100mg)</h5>
+                    <h5>Alternatives:Cydekin 100mg Capsule,Palbace 100mg Capsule,Primcyv 100mg Capsu</h5>
                     <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
                 </div>
                 <div class="card">
-                    <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_100,h_100,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;"> Bdpalbo 75mg Capsule</h3>                        
-                    <h5>Tablets</h5>
+                    <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_50,h_50,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;"> Bdpalbo 75mg Capsule</h3>                        
                     <h5>Marketer:BDR Pharmaceuticals Internationals Pvt</h5>
-                        <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
+                    <h5>SALT COMPOSITION: Palbociclib (75mg)</h5>
+                    <h5>Alternatives:Myciclib 75mg Capsule,Primcyv 75mg Capsul</h5>
+                    <button><a href="Medicine.html" class="btn btn-info">More info</button></a>
                     </div>  
 </body>
 </html>
