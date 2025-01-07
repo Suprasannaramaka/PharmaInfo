@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+    Versavo400SolutionforInfusion: {
+      name:'Versavo 400 Solution for Infusion',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/bpiluxn16dkqspkfkjat.jpg',
+      description:' ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '<li></li>' +
+          '<li>Ovarian cancer</li>' +
+          '<li>Cervical cancer</li>' +
+          '<li>Kidney cancer</li>' +
+          '<li>Brain tumor</li>' +
+          '<li>Non-small cell lung cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Inflammation of the nose</li>' +
+          '<li>Protein in urine</li>' +
+          '<li>Increased lacrimation</li>' +
+          '<li>Exfoliative dermatitis</li>' +
+          '<li>Back pain</li>' +
+          '<li>Hemorrhage</li>' +
+          '<li>Taste change</li>' +
+          '</ul>',
+          usage:'<ul><li>Versavo 400 Solution for Infusion is a anti-angiogenic medication. It works by blocking a protein called vascular endothelial growth factor (VEGF). This stops the formation of blood vessels that bring oxygen and nutrients to cancerous cells.</li>' +'</ul>'
+      },
+      price: '₹29396/Solution for Infusion',
+    },
+    Vectibix100mgSolutionforInfusion: {
+      name:'Vectibix 100mg Solution for Infusion"',
+      img:'',
+      description:'Vectibix 100mg Solution for Infusion is used to treat cancer of colon and rectum. It helps to mark the cancer cells for destruction by the bodys immune system. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '<li>Decreased magnesium level in blood</li>' +
+          '<li>Decreased potassium level in blood</li>' +
+          '<li>Stomatitis (Inflammation of the mouth)</li>' +
+          '<li>Cough</li>' +
+          '</ul>',
+          usage:'<ul><li>Vectibix 100mg Solution for Infusion is a monoclonal antibody that specifically binds to receptors on cancer cells. Thus it flags the cancer cells for destruction by the bodys immune system.</li>' +'</ul>'
+      },
+      price: '',
+    },
+    Versavo100SolutionforInfusion: {
+      name:'Versavo 100 Solution for Infusion',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Versavo 400 Solution for Infusion is an anticancer medication. It is used in the treatment of cancer of colon and rectum, non-small cell lung cancer, kidney cancer, brain tumor, ovarian and cervical cancer. It helps to prevent the growth of new blood vessels that feed tumors and stops tumors from growing. ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze</li>' +'</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '<li>Ovarian cancer</li>' +
+          '<li>Cervical cancer</li>' +
+          '<li>Kidney cancer</li>' +
+          '<li>Brain tumor</li>' +
+          '<li>Non-small cell lung cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nosebleeds</li>' +
+          '<li>High blood pressure</li>' +
+          '<li>Inflammation of the nose</li>' +
+          '<li>Protein in urine</li>' +
+          '<li>Taste change</li>' +
+          '<li>Dry skin</li>' +
+          '<li>Hemorrhage</li>' +
+          '<li>Increased lacrimation</li>' +
+          '</ul>',
+          usage:'<ul><li>Versavo 400 Solution for Infusion is a anti-angiogenic medication. It works by blocking a protein called vascular endothelial growth factor (VEGF). This stops the formation of blood vessels that bring oxygen and nutrients to cancerous cells.</li>' +'</ul>'
+      },
+      price: '₹29396/Solution for Infusion',
+    },
+    Velcade3point5mgInjection: {
+      name:'Velcade 3.5mg Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Velcade 3.5mg Injection is used in the treatment of multiple myeloma and mantle-cell lymphoma. It shows its working by stopping or slowing down the growth of cancer cells. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Multiple myeloma</li>' +
+          '<li>Mantle-cell lymphoma</li>' +
+          '</ul>',
+        sideeffects: '<ul><li></li>' +
+          '<li>Fungal infection</li>' +
+          '<li>Anemia (low number of red blood cells)</li>' +
+          '<li>Decreased white blood cell count (neutrophils)</li>' +
+          '<li>Dehydration</li>' +
+          '<li>Orthostatic hypotension (sudden lowering of blood pressure on standing)</li>' +
+          '<li>Low blood platelets</li>' +
+          '</ul>',
+          usage:'<ul><li>Velcade 3.5mg Injection is an anti-cancer medication. It works by blocking or slowing the breakdown of proteins in cells. As a result, there is an increase in a number of proteins in the cancer cells leading to their death.</li>' +'</ul>'
+      },
+      price: '₹46198/Injection',
+    },
+    Vertin16Tablet: {
+      name:'Vertin 16 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hndwoagwq4v6wjwy2pfc.jpg',
+      description:'Vertin 16 Tablet is used to prevent and treat a disorder of the inner ear known as Ménière’s disease. The symptoms include dizziness (vertigo), ringing in the ears (tinnitus), and loss of hearing, probably caused by fluid in the ear. This medicine helps relieve the symptoms by reducing the amount of fluid. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Menieres disease</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Indigestion</li>' +
+          '<li>Headache</li>' +
+          '<li>Nausea</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Bloating</li>' +
+          '</ul>',
+          usage:'<ul><li>Vertin 16 Tablet is a histamine analog. It works by improving the blood flow in the inner ear which reduces the pressure of excess fluid there. Excess fluid can send signals to the brain causing nausea, dizziness or spinning sensations.</li>' +'</ul>'
+      },
+      price: '₹24.93/Tablet',
+    },
+    Vigore100RedTablet: {
+      name:'Vigore 100 Red Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/e562e202e7e343a0828a6f64d58f2e2b.jpg',
+      description:' Vigore 100 Red Tablet is a prescription medicine used to treat erectile dysfunction (impotence) in men. It works by increasing blood flow to the penis. This helps men to get or maintain an erection. It belongs to a group of medicines known as phosphodiesterase type 5 (PDE 5) inhibitors.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Erectile dysfunction</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Blurred vision</li>' +
+          '<li>Indigestion</li>' +
+          '<li>Nasal congestion (stuffy nose)</li>' +
+          '<li>Upset stomach</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+          usage:'<ul><li>Vigore 100 Red Tablet is a phosphodiesterase-5 (PDE-5) inhibitor. It works by relaxing the blood vessels in your penis, thereby increasing blood flow into the penis on sexual stimulation. This helps you achieve and maintain a hard, erect penis suitable for sexual activity.</li>' +'</ul>'
+      },
+      price: '',
+    },
+    Viagra50mgTablet: {
+      name:'Viagra 50mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/4c99fd54a5564a959df91b12b3b2ab4a.jpg',
+      description:'Viagra 50mg Tablet is a prescription medicine used to treat erectile dysfunction (impotence) in men. It works by increasing blood flow to the penis. This helps men to get or maintain an erection. It belongs to a group of medicines known as phosphodiesterase type 5 (PDE 5) inhibitors. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Erectile dysfunction</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Flushing (sense of warmth in the face, ears, neck and trunk)</li>' +
+          '<li>Headache</li>' +
+          '<li>Blurred vision</li>' +
+          '<li>Indigestion</li>' +
+          '<li>Upset stomach</li>' +
+          '<li>Rash</li>' +
+          '<li>Nasal congestion (stuffy nose)</li>' +
+          '</ul>',
+          usage:'<ul><li>Viagra 50mg Tablet is a phosphodiesterase-5 (PDE-5) inhibitor. It works by relaxing the blood vessels in your penis, thereby increasing blood flow into the penis on sexual stimulation. This helps you achieve and maintain a hard, erect penis suitable for sexual activity.</li>' +'</ul>'
+      },
+      price: '',
+    },
+    VasograinTablet: {
+      name:'Vasograin Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/g9hz2j099roflqfi5tyh.jpg',
+      description:'Vasograin Tablet is a medicine used to prevent and treat migraine. It blocks the release of certain chemical messengers that cause pain and inflammation. It also blocks the signals in the brain that cause nausea and vomiting associated with migraine. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Migraine</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dryness in mouth</li>' +
+          '<li>Constipation</li>' +
+          '<li>Sedation</li>' +
+          '<li>Increased heart rate</li>' +
+          '<li>Urinary retention</li>' +
+          '<li>Muscle pain</li>' +
+          '<li>Orthostatic hypotension (sudden lowering of blood pressure on standing)</li>' +
+          '</ul>',
+          usage:'<ul><li>Vasograin Tablet is a combination of caffeine, ergotamine, paracetamol, and prochlorperazine. Ergotamine constricts blood vessels in the brain, reducing migraine pain caused by dilation. Caffeine enhances this effect by boosting ergotamine’s action. Paracetamol provides pain relief, while prochlorperazine helps control nausea and vomiting, which are common migraine symptoms. Together, these components work to alleviate headache pain and associated symptoms.</li>' +'</ul>'
+      },
+      price: '₹205',
+    },
+    VoveranSR100Tablet: {
+      name:'Voveran SR 100 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/s9ycpnw9hw9cibuyyaoa.jpg',
+      description:'Voveran SR 100 Tablet is a pain-relieving medicine. It is used to treat pain, swelling, stiffness, and joint pain in conditions like rheumatoid arthritis, osteoarthritis, and acute musculoskeletal injuries. It is commonly used in back pain, shoulder pain, neck pain, sprains, and spasms.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+            '<li>Vomiting</li>' +
+            '<li>Diarrhea</li>' +
+            '<li>Abdominal pain</li>' +
+            '<li>Indigestion</li>' +
+          '</ul>',
+          usage:'<ul><li><Voveran SR 100 Tablet is a non-steroidal anti-inflammatory drugs (NSAID). It works by blocking the release of certain chemical messengers that cause pain and inflammation (redness and swelling)./li>' +'</ul>'
+      },
+      price: '₹15.13/Tablet PR',
+    },     
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>
