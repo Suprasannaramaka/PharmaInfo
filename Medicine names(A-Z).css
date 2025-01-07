@@ -29,18 +29,6 @@ header input {
      padding-top: 30px;
      text-decoration: none;
 }
-.alphabets a {
-     /* Float links side by side */
-    text-align: center; /* Center-align text */
-    width: 50%; /* Equal width (5 icons with 20% width each = 100%) */
-    padding: 0px 0; /* Some top and bottom padding */
-    transition: all 0.3s ease; /* Add transition for hover effects */
-    color: white; /* White text color */
-    font-size: 20px; /* Increased font size */
-  }
-  .active {
-    background-color:#fff; /* Add an active/current color */
-  }
 .alphabets a{
     text-decoration: none;
 }
@@ -51,9 +39,6 @@ header input {
    font-size: medium;
    font-family: cursive;
    text-decoration:none;
-}
-.alpha :active{
-    color:#fff;
 }
 button.a
 {

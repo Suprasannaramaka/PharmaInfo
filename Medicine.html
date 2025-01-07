@@ -216,38 +216,33 @@
     </script>
         </div>
     </header>
-
-
-
-
-
 <div class="medicine-details" id="medicineDetails">
     <!-- Medicine details will be dynamically loaded here -->
 </div>
 
 <div class="tabs">
-    <a href="chidrenContent" class="tab-button" onclick="showData('children')"><button>Children</button></a>
-    <a href="adultContent" class="tab-button" onclick="showData('adults')"><button>Adults</button></a>
-    <a href="#" class="tab-button" onclick="showData('elderly')"><button>Elderly</button></a>
-    <a href="#" class="tab-button" onclick="showData('pregnant')"><button>Pregnant Women</button></a>
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('safetyadvice')"><button>Safety Advice</button></a>
 </div>
-<!-- Content for Children -->
-<div id="childrenContent" class="content">
+<!-- Content for storage -->
+<div id="storageContent" class="content">
     
 </div>
 
-<!-- Content for Adults -->
-<div id="adultsContent" class="content">
+<!-- Content for uses -->
+<div id="usesContent" class="content">
     
 </div>
 
-<!-- Content for Elderly -->
-<div id="elderlyContent" class="content">
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
     
 </div>
 
-<!-- Content for Pregnant Women -->
-<div id="pregnantContent" class="content">
+<!-- Content for safetyadvice-->
+<div id="safetyadviceContent" class="content">
     
 </div>
     
@@ -255,72 +250,43 @@
 // Medicine data for each tablet
 const medicines = {
     paracetamol: {
-        name: 'Paracetamol',
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSYKIwZmOftOcMs6dKiAdfGNFkMWnitl94MFg&s',
-        description: 'Paracetamol, also known as acetaminophen, is a commonly used analgesic (pain reliever) and antipyretic (fever reducer) medication. It is available over-the-counter and is widely used for treating mild to moderate pain and reducing fever.',
-        dosage: {
-            childrenContent: `<ul><li>1. 6 months to 2 years: 1/2 tablet (250 mg) every 4-6 hours. Max 2g per day.</li>' +
-                  '<li>2. 2 to 4 years: 1 tablet (500 mg) every 4-6 hours. Max 2g per day.</li>' +
-                  '<li>3. 4 to 6 years: 1 tablet (500 mg) every 4-6 hours. Max 3g per day.</li>' +
-                  '<li>4. 6 to 8 years: 1 tablet (500 mg) every 4-6 hours. Max 3g per day.</li>' +
-                  '<li>5. 8 to 10 years: 1 tablet (500 mg) every 4-6 hours. Max 3g per day.</li>' +
-                  '<li>6. 10 to 12 years: 1 tablet (500 mg) every 4-6 hours. Max 4g per day.</li>' +
+        name: 'Actorise 25 Injection',
+        img: '',
+        description: '',
+        MoreInfo: {
+            Storage: `<ul> +
                   '</ul>`,
-            adultsContent: `<ul><li>1. Adults (including elderly): 1 tablet (500mg) every 4 to 6 hours as needed. Do not exceed 4 grams (8 tablets) in 24 hours.</li>' +
-                  '<li>2. If liver or kidney issues are present, consult a healthcare provider for possible adjustments to dosage.</li>' +
-                    '<li>3. Do not give paracetamol with other medications that contain paracetamol to avoid overdose.</li>' +
-                    '<li>4. Take with or without food. If stomach discomfort occurs, it is recommended to take paracetamol with food.</li>' +
-                    '<li>5. Do not exceed the maximum daily dose. Overdose can lead to serious liver damage.</li>' +
-                    '<li>6. If symptoms persist for more than 3 days or worsen, consult a healthcare provider immediately.</li>' +
+            Uses: `<ul> +
                     '</ul>`,
-            elderly: '<ul><li>1. Increase susceptibility to chronic conditions like arthritis, heart disease, hypertension, diabetes, and dementia.</li>' +
-                    '<li>2.Slower metabolism and decreased kidney/liver function may require adjusted dosages for medications.</li>' +
-                    '<li>3. Important to focus on nutrient-rich foods such as those high in cacium, vitamin D, and fiber to support bone health, immune function, and digestive health.</li>' +
-                    '<li>4.Regular exercise is essential to maintain muscle mass, joint mobility, and overall health, with activities tailored to individual fitness levels.</li>' +
+            Sideeffects: '<ul>' +
                     '</ul>',
-            pregnant: '<ul><li>1. Increase susceptibility to chronic conditions like arthritis, heart disease, hypertension, diabetes, and     dementia.</li>' +
-                    '<li>2. Slower metabolism and decreased kidney/liver function may require adjusted dosages for medications.</li>' +
-                    '<li>3. Regular exercise is essential to maintain muscle mass, joint mobility, and overall health, with activities tailored to individual fitness levels.</li>' +
-                    '<li>4. Mental wellness is key, as older adults may experience cognitive decline, depression, or anxiety. Social enagement and mental stimulation help preserve cognitive function.</li>' +
+            SafetyAdvice: '<ul>' +
                     '</ul>',
         },
         price: 'Rs.50'
     },
     Sitagliptin: {
-        name: 'Sitagliptin',
+        name: '',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTp1dWvRr1pLdCWcrsgJI5L2gVXJ-BS297mqw&s',
-        description: 'Sitagliptin is an oral medication used to manage type 2 diabetes. It belongs to a class of drugs called DPP-4 inhibitors (Dipeptidyl Peptidase-4 inhibitors). Sitagliptin works by regulating the levels of insulin your body produces after eating, thus helping to control blood sugar levels.',
+        description: '',
         dosage: {
-            children: '<ul><li>1. Sitagliptin is generally not recommended for children under 18 years old. Consult with a healthcare provider for specific recommendations regarding pediatric use.</li>' +
-                    '<li>2. For children aged 18 years and above, follow adult dosage guidelines (100mg once daily).</li>' +
-                    '<li>Always consult with a healthcare provider for proper pediatric use and possible adjustments.</li>' +
+            children: '<ul>' +
                     '</ul>',
-            adults: '<ul><li>3. Recommended dose: 100mg once daily, with or without food.</li>' +
-                    '<li>4. May be used alone or in combination with other diabetes medications (e.g., metformin, sulfonylureas).</li>' +
-                    '<li>5. Dosage adjustment may be required in cases of kidney problems (reduce to 50mg or 25mg once daily depending on kidney function).</li>' +
-                    '<li>6. If a dose is missed, take it as soon as you remember, unless almost time for the next dose.</li>' +
+            adults: '<ul>' +
                     '</ul>',
-            elderly: '<ul><li>1. The recommended dose for elderly individuals is 100mg once daily.</li>' +
-                    '<li>2. However, dosage adjustments may be necessary for those with impaired kidney function.</li>' +
-                    '<li>3. Elderly patients should be monitored for kidney function to ensure proper dosage.</li>' +
+            elderly: '<ul>' +
                 '</ul>',
-            pregnant: '<ul><li>1. Consult a healthcare provider before using Sitagliptin during pregnancy, as safety has not been fully established.</li>' +
-                '<li>2. If pregnant or planning to become pregnant, inform your doctor to discuss other treatment options for managing type 2 diabetes.</li>' +
-                '<li>3. Monitor blood sugar levels closely during pregnancy to ensure proper control of blood glucose levels.</li>' +
+            pregnant: '<ul>' +
                 '</ul>',
         },
-        price: 'Rs.300'
+        price: ''
     },
     calpol: {
-        name: 'Calpol',
-        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR--6T_FEgUphtV_psAeBuPp4bkYXFmhBo6kA&s',
-        description: 'Calpol is a popular brand of paracetamol (acetaminophen) that is primarily used to relieve fever and pain in children. It is available in various forms, including liquids, syrups, and chewable tablets, and is commonly used to treat a range of common ailments like colds, headaches, toothaches, sore throats, and mild pain from injuries or teething.',
+        name: '',
+        img: '',
+        description: '',
         dosage: {
-            children: '<ul><li>1. Children 6 months to 2  years: 2.5ml (120mg) every 4 to 6 hours as needed. Do not exceed 4 doses in 24 hours.</li>' +
-                        '<li>2. Children 2 to 6 years: 5ml (240mg) every 4 to 6 hours as needed. Do not exceed 4 doses in 24 hours.</li>' +
-                        '<li>3. Children 6 to 12 years: 10ml (480mg) every 4 to 6 hours as needed. Do not exceed 4 doses in 24 hours.</li>' +
-                        '<li>4. Do not exceed the recommended daily dose. Overdose can cause serious liver damage.</li>' +
-                '</ul>',
+            children: '<ul>''<ul>',
             adults: '<ul><li>1. Adults: 500mg (1 tablet) every 4 to 6 hours as needed. Do not exceed 4 grams (8 tablets) in 24 hours.</li>' +
                         '<li>2. In case of severe pain or fever, consult with a healthcare provider for additional guidance on dose adjustments.</li>' +
                         '<li>3. Do not take more than the recommended dosage to avoid risk of liver damage.</li>' +
