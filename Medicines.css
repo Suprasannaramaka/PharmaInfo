@@ -1,11 +1,11 @@
- body {
+body {
       font-family: Arial, sans-serif;
-      margin: 0;
       padding: 0;
       background-image:radial-gradient(#7a98c6,#74a5c6,#68BBE3);
       padding-top: 30px;
       padding-bottom: 30px;
       display:grid;
+     
   }
   header {
     background-color: #284860;
@@ -32,6 +32,7 @@ header input {
   padding:0 3px;
   padding-left: 30px;
   padding-right: 30px;
+  margin-bottom: 20px;
   }
   .card
   {
@@ -104,3 +105,25 @@ header input {
           background-color:darkgray;
           text-decoration: none;
          }
+/* Extra small devices (phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+
+}  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media only screen and (min-width: 600px) {
+    
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media only screen and (min-width: 768px) {
+    
+  } 
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media only screen and (min-width: 992px) {
+    
+  } 
+  
+  /* Extra large devices (large laptops and desktops, 1200px and up) */
+  @media only screen and (min-width: 1200px) {
+  }
