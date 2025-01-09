@@ -44,6 +44,9 @@ header input {
       gap:0;
       border-radius: 25px;
   }
+  .card:hover {
+    background-color: rgb(146, 141, 131);
+  }
   .card button {
       display:flex;
     margin: auto;
