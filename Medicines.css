@@ -1,11 +1,11 @@
  body {
       font-family: Arial, sans-serif;
-      margin: 0;
       padding: 0;
       background-image:radial-gradient(#7a98c6,#74a5c6,#68BBE3);
       padding-top: 30px;
       padding-bottom: 30px;
       display:grid;
+     
   }
   header {
     background-color: #284860;
