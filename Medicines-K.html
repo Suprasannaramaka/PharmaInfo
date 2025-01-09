@@ -3,24 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicines -K</title>
+    <title>Medicines-K</title>
     <link rel="stylesheet" href="Medicines.css"/>
     <link rel="stylesheet" href="Medicine.css"/>
     <link rel="stylesheet" href="Medicine names(A-Z).css">
 </head>
-<body>
-    <header>
-        <h1>PharmaInfo</h1>
-        <input type="text" placeholder="Search for medicines, alternatives...">
-        <br>
-        </header>
-        <style>
-       button:hover{
-        background-color:darkgrey;
-       }
-        </style>
-        <div class="medicine-names">
-            <br>
+<header>
+    <h1>PharmaInfo</h1>
+    <input type="text" placeholder="Search for medicines, symptoms...">
+    <br>
+    </header>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-image:radial-gradient(#055CDD,#0E86D4,#68BBE3);
+          padding-top: 30px;
+          padding-bottom: 30px;
+          display:grid;
+      }
+      .row
+      { 
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap:10px 10px !important;
+      padding:5px;
+      padding-left: 30px;
+      padding-right: 30px;
+      }
+      .card
+      {
+          display:flexbox;
+          flex-direction: column;
+          background-color:#fff;
+          color:black;
+          border: #000 1px solid;
+          padding-bottom: 5px;
+      }
+      .card button {
+        display:flex;
+        margin: auto;
+        border-radius: 25px;
+        border: none;
+        font-weight:400;
+        font-size: small;
+        color: rgb(0, 0, 0);
+        background-color:#3d9bff;
+        transition: .4s ease-in-out;
+      }
+      h3
+      {
+       font-style: italic;
+       font-size:medium;
+       font-weight: 500;
+       text-align:center;
+      }
+      h5{
+          font-family: cursive;
+          font-size: medium;
+          text-align:center;
+      }
+      .alphabets
+      {
+          display:row;
+           text-decoration: none;
+           padding-top: 30px;
+           text-decoration: none;
+           margin-bottom: 40px;
+           text-align: center;
+           justify-content: center;
+      }
+      .alpha
+      {
+         color:black;
+         text-decoration: none;
+         font-size: larger;
+         font-family: cursive;
+         text-decoration: none;
+      }
+      button.a
+      {
+          text-decoration:none;
+      }
+      button:hover{
+              background-color:#68BBE3;
+             }
+          </style>
           <div class="row1">
               <div class="alphabets">
                 <button><a href="Medicines-A.html"><span class="alpha">A</span></a></button>
@@ -57,14 +126,14 @@
                 <h5>Marketer Name: MSD Pharmaceuticals Pvt Ltd</h5>
                 <h5>Salt Composition: Pembrolizumab (100mg)</h5>
                 <h5>Alternatives: Not available</h5>
-                <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                <button><a href="K.html?medication=KeytrudaInjection" class="btn btn-info">More info</a></button>
             </div>
             <div class="card">
                 <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/g5c9uf0rkvpwmncqlacl.jpg" alt="" style="align-content: center;padding-left: 100px;">Kryxana 200mg Tablet</h3>
                     <h5>Marketer Name: Novartis India Ltd</h5>
                     <h5>Salt Composition: Ribociclib (200mg)</h5>
                     <h5>Alternatives: Not available</h5>
-                    <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                    <button><a href="K.html?medication=Kryxana200mgTablet" class="btn btn-info">More info</a></button>
                 </div>
                 <div class="card">
                     <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" alt="" style="align-content: center;padding-left: 100px;">Kyprolis 60mg Injection
@@ -72,7 +141,7 @@
                         <h5>Marketer Name: Dr Reddy's Laboratories Ltd</h5>
                         <h5>Salt Composition: Carfilzomib (60mg)</h5>
                         <h5>Alternatives: Carfilnat Injection, Carzomib 60mg Injection, Carfizome 60 Injection</h5>
-                        <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                        <button><a href="K.html?medication=Kyprolis60mgInjection" class="btn btn-info">More info</a></button>
                     </div>
           </div><br><br><br>
           <div class="row">
@@ -81,7 +150,7 @@
                 <h5>Marketer Name: Roche Products India Pvt Ltd</h5>
                 <h5>Salt Composition:Trastuzumab Emtansine (100mg)</h5>
                 <h5>Alternatives: Not available</h5>
-                <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                <button><a href="K.html?medication=Kadcyla100mgInjection" class="btn btn-info">More info</a></button>
             </div>
             <div class="card">
                 <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png" style="align-content: center;padding-left: 100px;">Kadcyla 160mg Injection
@@ -89,14 +158,14 @@
                     <h5>Marketer Name: Roche Products India Pvt Ltd</h5>
                     <h5>Salt Composition: Ado-trastuzumab emtansine (160mg)</h5>
                     <h5>Alternatives: Not available</h5>
-                    <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                    <button><a href="K.html?medication=Kadcyla160mgInjection" class="btn btn-info">More info</a></button>
                 </div>
                 <div class="card">
                     <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/4572f6b95db74d8cb642fbfae9725636.jpg" alt="" style="align-content: center;padding-left: 100px;">Kixta 100mg Capsule</h3>
                         <h5>Marketer Name: Zydus Healthcare Limited</h5>
                         <h5>Salt Composition: Palbociclib (100mg)</h5>
                         <h5>Alternatives: Palbo 100mg Capsule, Cydekin 100mg Capsule, Palnat 100 Capsule</h5>
-                        <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                        <button><a href="K.html?medication=Kixta100mgCapsule" class="btn btn-info">More info</a></button>
                     </div>
           </div><br><br><br>
           <div class="row">
@@ -105,23 +174,22 @@
                 <h5>Marketer Name: Zydus Healthcare Limited</h5>
                 <h5>Salt Composition: Palbociclib (125mg)</h5>
                 <h5>Alternatives: Brespal 125 Capsule, Isogen 125mg Capsule, Primcyv 125mg Capsule</h5>
-                <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                <button><a href="K.html?medication=Kixta125mgCapsule" class="btn btn-info">More info</a></button>
             </div>
             <div class="card">
             <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/ss5qvmnhefoxkkmw8vaj.jpg" alt="" style="align-content: center;padding-left: 100px;">Ketorol-DT Tablet</h3>
                     <h5>Marketer Name: Dr Reddy's Laboratories Ltd</h5>
                     <h5>Salt Composition: Ketorolac (10mg)</h5>
                     <h5>Alternatives: Ketoford 10mg Tablet DT, Dentaforce-DT Tablet, Ketogee-DT Tablet</h5>
-                    <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                    <button><a href="K.html?medication=KetorolDTTablet" class="btn btn-info">More info</a></button>
                 </div>
                 <div class="card">
                 <h3><img src="https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/1095f97c1a84414189a88be92ca1578d.jpg" alt="" style="align-content: center;padding-left: 100px;">Kenacort 40mg Injection</h3>
                         <h5>Marketer Name: Abbott</h5>
                         <h5>Salt Composition: Triamcinolone (40mg/ml)</h5>
                         <h5>Alternatives: </h5>
-                        <button><a href="Medicine.html" class="btn btn-info">More info</a></button>
+                        <button><a href="K.html?medication=Kenacort40mgInjection" class="btn btn-info">More info</a></button>
                     </div>
-          </div>
           </div>
 </body>
 </html>

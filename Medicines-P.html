@@ -3,24 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medicines -C</title>
+    <title>Medicines-P</title>
     <link rel="stylesheet" href="Medicines.css"/>
     <link rel="stylesheet" href="Medicine.css"/>
     <link rel="stylesheet" href="Medicine names(A-Z).css">
 </head>
 <body>
-    <header>
-        <h1>PharmaInfo</h1>
-        <input type="text" placeholder="Search for medicines,alternatives...">
-        <br>
-        </header>
-        <style>
-       button:hover{
-        background-color:darkgrey;
-       }
-        </style>
-    <div class="medicine-names">
-        <br>
+    <style>
+        body {
+          font-family: Arial, sans-serif;
+          margin: 0;
+          padding: 0;
+          background-image:radial-gradient(#055CDD,#0E86D4,#68BBE3);
+          padding-top: 30px;
+          padding-bottom: 30px;
+          display:grid;
+      }
+      .row
+      { 
+      display:grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      grid-gap:10px 10px !important;
+      padding:5px;
+      padding-left: 30px;
+      padding-right: 30px;
+      }
+      .card
+      {
+        display:flexbox;
+          flex-direction: column;
+          background-color:#fff;
+          color:black;
+          border: #000 1px solid;
+          padding-bottom: 5px;
+          border-radius: 20px;
+          border: 3px solid #000;
+      }
+      .card button {
+        display:flex;
+        margin: auto;
+        border-radius: 25px;
+        border: none;
+        font-weight:400;
+        font-size: small;
+        color: rgb(0, 0, 0);
+        background-color:#3d9bff;
+        transition: .4s ease-in-out;
+      }
+      h3
+      {
+       font-style: italic;
+       font-size:medium;
+       font-weight: 500;
+       text-align:center;
+      }
+      h5{
+          font-family: cursive;
+          font-size: medium;
+          text-align:center;
+      }
+      .alphabets
+      {
+          display:row;
+           text-decoration: none;
+           padding-top: 30px;
+           text-decoration: none;
+           margin-bottom: 40px;
+           text-align: center;
+           justify-content: center;
+      }
+      .alpha
+      {
+         color:black;
+         text-decoration: none;
+         font-size: larger;
+         font-family: cursive;
+         text-decoration: none;
+      }
+      button.a
+      {
+          text-decoration:none;
+      }
+      button:hover{
+              background-color:#68BBE3;
+             }
+          </style>
                     <div class="row1">
                         <div class="alphabets">
                             <button><a href="Medicines-A.html"><span class="alpha">A</span></a></button>
