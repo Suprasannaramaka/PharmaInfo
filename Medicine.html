@@ -261,7 +261,6 @@ const medicines= {
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR--6T_FEgUphtV_psAeBuPp4bkYXFmhBo6kA&s',
         description: 'Calpol is a popular brand of paracetamol (acetaminophen) that is primarily used to relieve fever and pain in children. It is available in various forms, including liquids, syrups, and chewable tablets, and is commonly used to treat a range of common ailments like colds, headaches, toothaches, sore throats, and mild pain from injuries or teething.',
         dosage: {
-            dosage: {
             storage: '<ul><li>Store below 30°C</li>' +
                 '</ul>',
             uses: '<ul><li>Moderate to severe pain</li>' +
@@ -275,7 +274,7 @@ const medicines= {
                 '</ul>',
         }, 
             price: 'Rs.30',
-    },
+},
     vitaminD: {
         name: 'Vitamin D',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTAq7Cx-ORTjMIn6cZZiHFgcoPhch9qgUL6ng&s',
@@ -297,7 +296,7 @@ const medicines= {
                 '</ul>',
         },
         price: 'Rs.130',
-    },
+},
     AZirta500mg: {
         name: 'Azirta',
         img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQj0tZFgDCGionGZ0GRJ3D9VVduo8EPgUXdkw&s',
@@ -336,7 +335,6 @@ const medicines= {
                 '</ul>',
         },
     price: 'Rs.100',
-    },
 },
 };
 
@@ -384,16 +382,16 @@ function showData(type) {
     if (medicineData) {
         if (type === 'storage') {
             document.getElementById('storageContent').style.display = 'block';
-            document.getElementById('storageContent').innerHTML = <p>${medicineData.dosage.storage}</p>;
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
         } else if (type === 'uses') {
             document.getElementById('usesContent').style.display = 'block';
-            document.getElementById('usesContent').innerHTML = <p>${medicineData.dosage.uses}</p>;
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
         } else if (type === 'sideeffects') {
             document.getElementById('sideeffectsContent').style.display = 'block';
-            document.getElementById('sideeffectsContent').innerHTML = <p>${medicineData.dosage.sideeffects}</p>;
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
         } else if (type === 'usage') {
             document.getElementById('usageContent').style.display = 'block';
-            document.getElementById('usageContent').innerHTML = <p>${medicineData.dosage.usage}</p>;
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
         }
     }
 }
