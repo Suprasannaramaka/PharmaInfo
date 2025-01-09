@@ -1,7 +1,7 @@
 body {
       font-family: Arial, sans-serif;
       padding: 0;
-      background-image:radial-gradient(#7a98c6,#74a5c6,#68BBE3);
+      background-image:radial-gradient(#7a98c6,#9bc3de,#8faab8);
       padding-top: 30px;
       padding-bottom: 30px;
       display:grid;
@@ -40,10 +40,14 @@ header input {
       flex-direction: column;
       background-color:#fff;
       color:black;
-      border: #000 3px solid;
+      border: #000 2px solid;
       padding-bottom: 10px;
       gap:0;
       border-radius: 25px;
+  }
+  .card:hover
+  {
+    background-color:rgb(128, 138, 142);
   }
   .card button {
       display:flex;
@@ -102,7 +106,6 @@ header input {
       font-size: medium;
   }
   button:hover{
-          background-color:darkgray;
           text-decoration: none;
          }
 /* Extra small devices (phones, 600px and down) */
