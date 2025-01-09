@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+        </div>
+    </header>
+
+
+
+
+
+<div class="medicine-details" id="medicineDetails">
+    <!-- Medicine details will be dynamically loaded here -->
+</div>
+
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for Storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for Uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for Side Effects -->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for Usage -->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  HifenacPTablet: {
+      name: 'Hifenac P Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/fcfgdaxwsjtyb4a7yulm.jpg',
+      description: 'Hifenac P Tablet is a pain-relieving medicine. It is used to reduce pain and inflammation in conditions like rheumatoid arthritis, ankylosing spondylitis, and osteoarthritis.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Heartburn</li>' +
+          '<li>Stomach pain/epigastric pain</li>' +
+          '<li>Vomiting</li>' +
+          '</ul>',
+      usage: '<ul><li>Hifenac P Tablet is a combination of two medicines: Aceclofenac and Paracetamol. These medicines work by blocking the action of chemical messengers responsible for pain, fever and inflammation (redness and swelling).</li>' +
+              '</ul>',
+      },
+      price: '86.7',
+    },
+    HepamerzTablet: {
+      name: 'Hepamerz Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/9a00e4e2908447e7be9dfc67a2399589.jpg',
+      description: 'Hepamerz Tablet is a combination medicine used in the treatment of indigestion. It works by improving the function of the digestive system.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Indigestion</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Bloating</li>' +
+          '<li>Constipation</li>' +
+          '</ul>',
+      usage: '<ul><li>Hepamerz Tablet is a combination of two amino acids (L-Ornithine L-Aspartate) and a digestive enzyme (Pancreatin).</li>' +
+              '</ul>',
+      },
+      price: '248',
+    },
+    HPKit: {
+      name: 'HP Kit',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/ztd8ahechzsahrsou0yd.jpg',
+      description: 'HP Kit is a combination medicine used in the treatment of peptic ulcer disease by relieving the symptoms such as heartburn, indigestion, stomach pain, and irritation. It works by killing the ulcer-causing bacteria H. pylori.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Peptic ulcer disease</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Diarrhea</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Stomach pain</li>' +
+          '</ul>',
+      usage: '<ul><li>Omeprazole, Tinidazole and Amoxicillin, which treats stomach/intestinal ulcers due to bacterial infections. Omeprazole is a proton pump inhibitor (PPI) which reduces the amount of acid in the stomach and treats acid-related indigestion and ulcers.</li>' +
+              '</ul>',
+      },
+      price: '123',
+    },
+    HyocimaxSTablet: {
+      name: 'Hyocimax-S Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/dnz8dvgbofx9i2bd01dg.jpg',
+      description: 'Hyocimax-S Tablet is used for pain relief. It relieves cramps or spasms of the stomach, intestines and bladder. It is also used to treat stomach and intestinal disorders, including peptic ulcer and irritable bowel syndrome.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Peptic ulcer disease</li>' +
+          '<li>Treatment of Irritable bowel syndrome</li>' +
+          '<li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Constipation</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Flushing (sense of warmth in the face, ears, neck and trunk)</li>' +
+          '<li>Difficulty in urination</li>' +
+          '</ul>',
+      usage: '<ul><li>Hyocimax-S Tablet is an anti-muscarinic. It works by decreasing the stomach secretions such as mucus and acids to relax the gut muscles. By doing this, it relieves abdominal cramps and pain.</li>' +
+              '</ul>',
+      },
+      price: '49.3',
+    },
+    Hydrocort100mgInjection: {
+      name: 'Hydrocort 100mg Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/a95785b0f82f4ccaaae8f894b78d6eb1.jpg',
+      description: 'Hydrocort 100mg Injection belongs to a group of medicines called corticosteroids. It is used to treat a variety of diseases and conditions such as severe allergic reactions, allergic conditions, cancer, and skin and eye disorders.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Allergic conditions</li>' +
+          '<li>Severe allergic reactions</li>' +
+          '<li>Treatment of Cancer</li>' +
+          '<li>Treatment of Eye disorders</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Injection site reactions (pain, swelling, redness)</li>' +
+          '<li>Mood changes</li>' +
+          '</ul>',
+      usage: '<ul><li>Hydrocort 100mg Injection is a steroid which works by blocking the production of certain chemical messengers in the body that cause inflammation (redness and swelling) and allergies.</li>' +
+              '</ul>',
+      },
+      price: '29.8',
+    },
+    HVitBiotinTablet: {
+      name: 'H-Vit Biotin Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/nw5drim4tiztqzkp6dz8.jpg',
+      description: 'H-Vit Biotin Tablet is a form of vitamin B that provides essential nutrients. It is used to treat nutritional deficiencies caused by a lack of vitamin B7.',
+      dosage: {
+        storage: '<ul><li>Store below 25°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Nutritional deficiencies</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Upset stomach</li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+      usage: '<ul><li>Take this medicine in the dose and duration as advised by your doctor. Swallow it as a whole. Do not chew, crush or break it. H-Vit Biotin Tablet is to be taken with food.</li>' +
+              '</ul>',
+      },
+      price: '45.9',
+    },
+    HistafreeMTablet: {
+      name: 'Histafree-M Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/ahhjsum0ctcfg5t4c4bd.jpg',
+      description: 'Histafree-M Tablet is a combination medicine used in the treatment of allergy symptoms such as runny nose, stuffy nose, sneezing, watery eyes, and congestion or stuffiness.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Sneezing and runny nose due to allergies</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Increased transaminase level in blood</li>' +
+          '<li>Upper respiratory tract infection</li>' +
+          '<li>Flu-like symptoms</li>' +
+          '</ul>',
+      usage: '<ul><li>Montelukast is a leukotriene antagonist. It works by blocking the action of a chemical messenger called leukotriene.</li>' +
+              '</ul>',
+      },
+      price: '116',
+    },
+    Hcg5000IUInjection: {
+      name: 'Hcg 5000IU Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/h0d6rzojz7wi7cavkkas.jpg',
+      description: 'Hcg 5000IU Injection is used in the treatment of infertility in women. It is also helpful in the treatment of male hypogonadism (delayed puberty, and low sperm count).',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Female infertility</li>' +
+          '<li>Treatment of Male hypogonadism</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Injection site pain</li>' +
+          '<li>Restlessness</li>' +
+          '<li>Fatigue</li>' +
+          '<li>Headache</li>' +
+          '</ul>',
+      usage: '<ul><li>Hcg 5000IU Injection is a sex hormone. In females, it helps in the release of eggs from the ovary. In males, it works by enhancing the production of testosterone which helps in treating conditions such as delayed puberty, and low sperm count.</li>' +
+              '</ul>',
+      },
+      price: '385',
+    },
+    Huminsulin3070Cartridge3mlEach: {
+      name: 'Huminsulin 30/70 Cartridge (3ml Each)',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cfbu8qn9w8jycthjyz4l.jpg',
+      description: 'Huminsulin 30/70 Cartridge (3ml Each) is a combination of two medicines, an intermediate-acting and a short-acting type of insulin. It is used in the treatment of diabetes mellitus (type 1 and 2) to improve blood sugar control both in adults and children. It helps maintain the blood sugar levels in diabetic patients.',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Diabetes</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Hypoglycemia (low blood glucose level)</li>' +
+          '<li>Injection site reactions (pain, swelling, redness)</li>' +
+          '<li>Weight gain</li>' +
+          '</ul>',
+      usage: '<ul><li>Insulin Isophane has a prolonged duration of action, while human insulin has a fast onset of action. Together, they ensure rapid and consistent sugar control by facilitating reuptake of sugar in muscle and fat cells and suppressing the production of sugar in the liver.</li>' +
+              '</ul>',
+      },
+      price: '383',
+    },
+    };
+
+
+    // Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

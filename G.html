@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+        </div>
+    </header>
+
+
+
+
+
+<div class="medicine-details" id="medicineDetails">
+    <!-- Medicine details will be dynamically loaded here -->
+</div>
+
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for Storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for Uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for Side Effects -->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for Usage -->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  Granicip1DTTablet: {
+      name: 'Granicip 1 DT Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/dea44132d6a042e3a5c8f00579d12222.jpg',
+      description: 'Granicip 1 DT Tablet is an antiemetic medicine commonly used to control nausea and vomiting caused due to any surgery, cancer drug therapy, or radiotherapy.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Vomiting</li>' +
+          '<li>Nausea and vomiting due to chemotherapy</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Weakness</li>' +
+          '<li>Headache</li>' +
+          '<li>Constipation</li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+      usage: '<ul><li>Granicip 1 DT Tablet is an antiemetic medication. It works by blocking the action of a chemical messenger (serotonin) in the brain that may cause nausea and vomiting during anti-cancer treatment (chemotherapy) or after surgery.</li>' +
+              '</ul>',
+      },
+      price: '73.5',
+    },
+    GranicipInjection: {
+      name: 'Granicip Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cc1ef4bba5d7439d9af0d58678a53e28.jpg',
+      description: 'Granicip Injection is an anti-emetic medicine commonly used to control nausea and vomiting caused due to any surgery, cancer drug therapy, or radiotherapy.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Vomiting</li>' +
+          '<li>Nausea and vomiting due to chemotherapy</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Injection site pain</li>' +
+          '<li>Constipation</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Headache</li>' +
+          '</ul>',
+      usage: '<ul><li>Granicip Injection is an antiemetic medication. It works by blocking the action of a chemical messenger (serotonin) in the brain that may cause nausea and vomiting during anti-cancer treatment (chemotherapy) or after surgery.</li>' +
+              '</ul>',
+      },
+      price: '73.7',
+    },
+    GabapinNTTablet: {
+      name: 'Gabapin NT Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/f7kl01iiohelvbrftc11.jpg',
+      description: 'Gabapin NT Tablet is a combination medicine used for the treatment of neuropathic pain. This medicine decreases the pain by stopping the movement of pain signals to the brain.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Neuropathic pain</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dryness in mouth</li>' +
+          '<li>Decreased white blood cell count</li>' +
+          '<li>Peripheral edema</li>' +
+          '<li>Weakness</li>' +
+          '</ul>',
+      usage: '<ul><li>Gabapin NT Tablet is a combination of two medicines: Gabapentin and Nortriptyline. Gabapentin is an alpha 2 delta ligand which decreases the pain by modulating calcium channel activity of the nerve cells.</li>' +
+              '</ul>',
+      },
+      price: '409',
+    },
+    GudcefCV200Tablet: {
+      name: 'Gudcef-CV 200 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/skt7efvv3ldbl5s1rusc.jpg',
+      description: 'Gudcef-CV 200 Tablet is a combination of two medicines. It is prescribed to treat respiratory tract infections. It treats the infection and prevents further growth and spread of the microorganisms.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Respiratory tract infection</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Rash</li>' +
+          '</ul>',
+      usage: '<ul><li>Gudcef-CV 200 Tablet is a combination of two medicines: Cefpodoxime Proxetil and Clavulanic Acid. Cefpodoxime Proxetil is an antibiotic.</li>' +
+              '</ul>',
+      },
+      price: '252',
+    },
+    GlycometGP1TabletPR: {
+      name: 'Glycomet-GP 1 Tablet PR',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/v9mscy7flmdd2vcxsuzc.jpg',
+      description: 'Glycomet-GP 1 Tablet PR belongs to a category of medicines known as anti-diabetic drugs. It is a combination of two medicines used to treat type 2 diabetes mellitus in adults. It helps control blood sugar levels in people with diabetes.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Type 2 diabetes mellitus</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Hypoglycemia (low blood glucose level)</li>' +
+          '<li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+      usage: '<ul><li>Glycomet-GP 1 Tablet PR is a combination of two antidiabetic medicines: Glimepiride and Metformin.Glimepiride is a sulfonylurea which works by increasing the amount of insulin released by the pancreas in order to lower the blood glucose</li>' +
+              '</ul>',
+      },
+      price: '99.5',
+    },
+    Gudcef200Tablet: {
+      name: 'Gudcef 200 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/6d1e76fc417f40f7a54f708491556430.jpg',
+      description: 'Gudcef 200 Tablet is an antibiotic medicine used to treat bacterial infections in your body. It is effective in infections of the lungs (eg. pneumonia), urinary tract, ear, nasal sinus, throat, and skin.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Bacterial infections</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Rash</li>' +
+          '<li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+      usage: '<ul><li>Gudcef 200 Tablet is an antibiotic. It kills the bacteria by preventing them from forming the bacterial protective covering (cell wall) which is needed for them to survive.</li>' +
+              '</ul>',
+      },
+      price: '149',
+    },
+    Ga6GlycolicAcidCream: {
+      name: 'Ga - 6 Glycolic Acid Cream',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/db71b51c-153d-4c74-bc42-bdb062c347fc.jpeg',
+      description: 'Ga - 6 Glycolic Acid Cream is a medicine used to treat dry skin. It works by exfoliating the outer layer of dead skin cells, which can help to smooth rough patches and improve the skins overall texture.',
+      dosage: {
+        storage: '<ul><li>Store below 25°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Dry Skin</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Application site reactions (burning, irritation, itching and redness)</li>' +
+          '</ul>',
+      usage: '<ul><li>Glycolic acid treats dry skin by exfoliating the skins surface and promoting cell turnover. It penetrates the top layer of the skin, breaking down the bonds between dead skin cells and allowing them to shed more easily.</li>' +
+              '</ul>',
+      },
+      price: '141',
+    },
+    GudcefCV200Tablet: {
+      name: 'Gudcef-CV 200 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/skt7efvv3ldbl5s1rusc.jpg',
+      description: 'Gudcef-CV 200 Tablet is a combination of two medicines. It is prescribed to treat respiratory tract infections. It treats the infection and prevents further growth and spread of the microorganisms.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Respiratory tract infection</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Rash</li>' +
+          '</ul>',
+      usage: '<ul><li>Gudcef-CV 200 Tablet is a combination of two medicines: Cefpodoxime Proxetil and Clavulanic Acid. Cefpodoxime Proxetil is an antibiotic.</li>' +
+              '</ul>',
+      },
+      price: '252',
+    },
+    Gemer2TabletPR: {
+      name: 'Gemer 2 Tablet PR',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/ad4e9170b0b04859805677061a38c3fa.jpg',
+      description: 'Gemer 2 Tablet PR belongs to a category of medicines known as anti-diabetic drugs. It is a combination of two medicines used to treat type 2 diabetes mellitus in adults. It helps control blood sugar levels in people with diabetes.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Type 2 diabetes mellitus</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Hypoglycemia (low blood glucose level)</li>' +
+          '<li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+      usage: '<ul><li>Gemer 2 Tablet PR is a combination of two antidiabetic medicines: Glimepiride and Metformin.Glimepiride is a sulfonylurea which works by increasing the amount of insulin released by the pancreas in order to lower the blood glucose. </li>' +
+              '</ul>',
+      },
+      price: '189',
+    },
+    };
+
+
+    // Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

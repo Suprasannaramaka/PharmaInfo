@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+        </div>
+    </header>
+
+
+
+
+
+<div class="medicine-details" id="medicineDetails">
+    <!-- Medicine details will be dynamically loaded here -->
+</div>
+
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for Storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for Uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for Side Effects -->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for Usage -->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  EcosprinAV75Capsule: {
+      name: 'Ecosprin-AV 75 Capsule',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/7bb14353d11448548620b958be35e900.jpg',
+      description: 'Ecosprin-AV 75 Capsule is a combination of two medicines used to prevent heart attack and stroke. It lowers the "bad" cholesterol (LDL), triglycerides and raises the "good" cholesterol (HDL) levels in the body.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Prevention of heart attack and stroke</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nasopharyngitis (inflammation of the throat and nasal passages)</li>' +
+          '<li>Muscle pain</li>' +
+          '<li>Joint pain</li>' +
+          '<li>Increased bleeding tendency</li>' +
+          '</ul>',
+      usage: '<ul><li>Ecosprin-AV 75 Capsule is a combination of two medicines: Atorvastatin and Aspirin, which prevents heart attack and stroke.</li>' +
+              '</ul>',
+      },
+      price: '50',
+    },
+    EnzoflamTablet: {
+      name: 'Enzoflam Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/lmt0ewoa0haghag7hkqa.jpg',
+      description: 'Enzoflam Tablet is a pain-relieving medicine. It helps in relieving moderate pain and reducing fever. It is used in various conditions such as muscle ache, back pain, joint pain, menstrual cramps, and toothache.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Indigestion</li>' +
+          '</ul>',
+      usage: '<ul><li>Enzoflam Tablet is a combination of three medicines: Diclofenac, Paracetamol and Serratiopeptidase, which relieves pain.</li>' +
+              '</ul>',
+      },
+      price: '138',
+    },
+    Enteroquinol250mgTablet: {
+      name: 'Enteroquinol 250mg Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description: 'Enteroquinol 250mg Tablet belongs to the class of drugs known as intestinal amebicides. It is used to treat worm infections and infections of the intestine caused by an organism called amoeba (intestinal amebiasis).',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Worm infections</li>' +
+          '<li>Treatment of Intestinal amoebiasis</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Abnormal liver function tests</li>' +
+          '</ul>',
+      usage: '<ul><li>Quiniodochlor belongs to the class of drugs called as intestinal amoebicides. It exerts its action by directly killing the trophozoites (adult parasite) responsible for production of cysts (infective form of parasite).</li>' +
+              '</ul>',
+      },
+      price: '56',
+    },
+    EmoleneCream: {
+      name: 'Emolene Cream',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/6d5a67d160c04a79824ee934520d83d8.jpg',
+      description: 'Emolene Cream is a kind of moisturizer which is used to treat dry skin. It works by preventing water loss from the outer layer of the skin. This relieves dryness and leaves the skin soft and hydrated.',
+      dosage: {
+        storage: '<ul><li>Store below 25°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Dry Skin</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Limited data available</li>' +
+          '</ul>',
+      usage: '<ul><li>Emolene Cream works as a humectant by attracting moisture to the skin and consequently hydrating and moisturizing it.</li>' +
+              '</ul>',
+      },
+      price: '314',
+    },
+    Envas5Tablet: {
+      name: 'Envas 5 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/esjxdxc9t6ytov0i0wgg.jpg',
+      description: 'Envas 5 Tablet belongs to a group of medicines known as angiotensin-converting enzyme (ACE) inhibitors. It is widely used to treat high blood pressure and heart failure and may be prescribed after a heart attack.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Hypertension (high blood pressure)</li>' +
+          '<li>Prevention of heart attack and stroke</li>' +
+          '<li>Heart failure</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Decreased blood pressure</li>' +
+          '<li>Cough</li>' +
+          '<li>Increased potassium level in blood</li>' +
+          '<li>Fatigue</li>' +
+          '</ul>',
+      usage: '<ul><li>Envas 5 Tablet is an angiotensin converting enzyme (ACE) inhibitor. It works by reducing stress on the heart and relaxing blood vessel so that blood flows more smoothly and the heart can pump blood more efficiently.</li>' +
+              '</ul>',
+      },
+      price: '52.4',
+    },
+    EnzoflamSPTablet: {
+      name: 'Enzoflam-SP Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/1014a656cc844137932547d2135cccbe.jpg',
+      description: 'Enzoflam-SP Tablet is a combination medicine used to relieve pain and swelling in various conditions like muscle pain, joint pain, and postoperative pain.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Indigestion</li>' +
+          '</ul>',
+      usage: '<ul><li>Enzoflam-SP Tablet is a combination of three medicines: Aceclofenac, Paracetamol and Serratiopeptidase. Aceclofenac is a non-steroidal anti-inflammatory drug (NSAID), and Paracetamol is an antipyretic (fever reducer).</li>' +
+              '</ul>',
+      },
+      price: '110',
+    },
+    EmbetaXR25Tablet: {
+      name: 'Embeta XR 25 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/i07qnyjugqp4rwjmqd1p.jpg',
+      description: 'Embeta XR 25 Tablet belongs to a group of medicines called beta-blockers. It is used to treat high blood pressure (hypertension), angina (heart-related chest pain), and irregular heart rhythms (arrhythmia).',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Angina (heart-related chest pain)</li>' +
+          '<li>Treatment of Arrhythmia</li>' +
+          '<li>Prevention of Heart attack</li>' +
+          '<li>Treatment of Hypertension (high blood pressure)</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Tiredness</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Depression</li>' +
+          '<li>Breathlessness</li>' +
+          '</ul>',
+      usage: '<ul><li>Embeta XR 25 Tablet is a long-acting beta blocker that works specifically on the heart. It works by slowing down the heart rate and makes the heart more efficient at pumping blood around the body.</li>' +
+              '</ul>',
+      },
+      price: '119',
+    },
+    EmbetaXR50Tablet: {
+      name: 'Embeta XR 50 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/zumuymnr9bef2znsinxa.png',
+      description: 'Embeta XR 50 Tablet belongs to a group of medicines called beta-blockers. It is used to treat high blood pressure (hypertension), angina (heart-related chest pain), and irregular heart rhythms (arrhythmia).',
+      dosage: {
+        storage: '<ul><li>Store below 25°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Angina (heart-related chest pain)</li>' +
+          '<li>Treatment of Arrhythmia</li>' +
+          '<li>Prevention of Heart attack</li>' +
+          '<li>Treatment of Hypertension (high blood pressure)</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Tiredness</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Depression</li>' +
+          '<li>Breathlessness</li>' +
+          '</ul>',
+      usage: '<ul><li>Embeta XR 50 Tablet is a long-acting beta blocker that works specifically on the heart. It works by slowing down the heart rate and makes the heart more efficient at pumping blood around the body.</li>' +
+              '</ul>',
+      },
+      price: '162',
+    },
+    EritelLN40Tablet: {
+      name: 'Eritel LN 40 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/wnrn2ttyyissfkjui27p.jpg',
+      description: 'Eritel LN 40 Tablet contains two medicines, both of which help to control high blood pressure. It lowers the blood pressure by relaxing the blood vessels and making it easier for your heart to pump blood around your body.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Hypertension (high blood pressure)</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Ankle swelling</li>' +
+          '<li>Headache</li>' +
+          '<li>Flushing (sense of warmth in the face, ears, neck and trunk)</li>' +
+          '<li>Dizziness</li>' +
+          '</ul>',
+      usage: '<ul><li>Eritel LN 40 Tablet is a combination of two medicines: Cilnidipine and Telmisartan, which lowers blood pressure effectively.</li>' +
+              '</ul>',
+      },
+      price: '203',
+    },
+    };
+
+
+    // Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

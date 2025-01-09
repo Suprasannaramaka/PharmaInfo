@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+        </div>
+    </header>
+
+
+
+
+
+<div class="medicine-details" id="medicineDetails">
+    <!-- Medicine details will be dynamically loaded here -->
+</div>
+
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for Storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for Uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for Side Effects -->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for Usage -->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  MitobulinSolutionforInjection: {
+      name: 'Mitobulin Solution for Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description: 'Mitobulin Solution for Injection is used in the treatment of breast cancer. It is used to treat adults with breast cancer that has spread to other parts of the body, and who have already received other anticancer medicines after the cancer has spread.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Metastatic breast cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Anemia (low number of red blood cells)</li>' +
+          '<li>Weakness</li>' +
+          '<li>Hair loss</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+      usage: '<ul><li>Mitobulin Solution for Injection is an anticancer medication. It works by interfering with the microtubule structures which help the cancer cells to divide and multiply.</li>' +
+              '</ul>',
+      },
+      price: '10800',
+    },
+    Myezom2mgInjection: {
+      name: 'Myezom 2mg Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/de84ddb79b9f4b938df87f8f1dd35983.jpg',
+      description: 'Myezom 2mg Injection is used in the treatment of multiple myeloma and mantle-cell lymphoma. It shows its working by stopping or slowing down the growth of cancer cells.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Multiple myeloma</li>' +
+          '<li>Mantle-cell lymphoma</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Fungal infection</li>' +
+          '<li>Anemia (low number of red blood cells)</li>' +
+          '<li>Breathlessness</li>' +
+          '<li>Decreased white blood cell count (neutrophils)</li>' +
+          '</ul>',
+      usage: '<ul><li>Myezom 2mg Injection is an anti-cancer medication. It works by blocking or slowing the breakdown of proteins in cells.</li>' +
+              '</ul>',
+      },
+      price: '2105',
+    },
+    Meqsel05mgTablet: {
+      name: 'Meqsel 0.5mg Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/d89a400b-131c-4a40-8ca7-afe042c651e7.jpeg',
+      description: 'Meqsel 0.5mg Tablet is used alone or in combination with other medicines to treat unresectable or metastatic melanoma.',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of unresectable or metastatic Melanoma</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Rash</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Lymphedema</li>' +
+          '<li>Fever</li>' +
+          '</ul>',
+      usage: '<ul><li>Meqsel 0.5mg Tablet works by blocking the action of an abnormal protein that signals cancer cells to multiply. This helps stop the spread of cancer cells.</li>' +
+              '</ul>',
+      },
+      price: '47045',
+    },
+    MyvajraTablet: {
+      name: 'Myvajra Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/8960721e6368469d9c8a05754c98e1e3.jpg',
+      description: 'Myvajra Tablet belongs to a group of medicines called antiretrovirals. It is used to treat HIV (human immunodeficiency virus), the virus that can cause AIDS (acquired immunodeficiency syndrome).',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>HIV infection</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Headache</li>' +
+          '<li>Depression</li>' +
+          '</ul>',
+      usage: '<ul><li>Myvajra Tablet is a combination of two anti-HIV medicines: Emtricitabine and Tenofovir disoproxil fumarate.</li>' +
+              '</ul>',
+      },
+      price: '1873',
+    },
+    MeftalSpasTablet: {
+      name: 'Meftal-Spas Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/50c498e481454deda52a08f7b569d2dc.jpg',
+      description: 'Meftal-Spas Tablet is a prescription medicine that helps to provide symptomatic relief from menstrual (period-related) pain and cramps.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Menstrual pain</li>' +
+          '<li>Treatment of Abdominal cramp</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dizziness</li>' +
+          '<li>Dryness in mouth</li>' +
+          '<li>Blurred vision</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+      usage: '<ul><li>Meftal-Spas Tablet is a combination of two medicines: Dicyclomine and Mefenamic Acid. Dicyclomine is an anticholinergic which works by relaxing the muscles in the stomach and gut (intestine).</li>' +
+              '</ul>',
+      },
+      price: '44.2',
+    },
+    Manforce100mgTablet: {
+      name: 'Manforce 100mg Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/f7758f78d0e64f12922fd897f18af759.jpg',
+      description: 'Manforce 100mg Tablet is a prescription medicine used to treat erectile dysfunction (impotence) in men. It works by increasing blood flow to the penis.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Erectile dysfunction</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Flushing (sense of warmth in the face, ears, neck and trunk)</li>' +
+          '<li>Headache</li>' +
+          '<li>Blurred vision</li>' +
+          '<li>Indigestion</li>' +
+          '</ul>',
+      usage: '<ul><li>Manforce 100mg Tablet is a phosphodiesterase-5 (PDE-5) inhibitor. It works by relaxing the blood vessels in your penis, thereby increasing blood flow into the penis on sexual stimulation.</li>' +
+              '</ul>',
+      },
+      price: '162',
+    },
+    MontairLCTablet: {
+      name: 'Montair-LC Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/wbcmitb6ibmotmsy9st6.jpg',
+      description: 'Montair-LC Tablet is a combination medicine used in the treatment of allergic symptoms such as runny nose, stuffy nose, sneezing, itching, swelling, watery eyes and congestion or stuffiness.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Allergic skin conditions</li>' +
+          '<li>Treatment of Sneezing and runny nose due to allergies</li>' +
+          '<li>Treatment of Hay fever</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Dryness in mouth</li>' +
+          '<li>Fatigue</li>' +
+          '</ul>',
+      usage: '<ul><li>Montair-LC Tablet is a combination of two medicines: Levocetirizine and Montelukast, which relieves sneezing and runny nose due to allergies. Levocetirizine is an antiallergic which blocks a chemical messenger (histamine) responsible for runny nose, watery eyes and sneezing.</li>' +
+              '</ul>',
+      },
+      price: '329',
+    },
+    Metrogyl400Tablet: {
+      name: 'Metrogyl 400 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/d4dd6a05dc7f4b3c91fd8e7d7a6a5ac3.jpg',
+      description: 'Metrogyl 400 Tablet is an antibiotic medicine that helps your body fight infections caused by bacteria and parasites.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Bacterial infections</li>' +
+          '<li>Treatment of Parasitic infections</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Dryness in mouth</li>' +
+          '<li>Nausea</li>' +
+          '<li>Metallic taste</li>' +
+          '</ul>',
+      usage: '<ul><li>Metrogyl 400 Tablet is an antibiotic. It kills the bacteria and other microorganisms that cause infections by damaging their DNA.</li>' +
+              '</ul>',
+      },
+      price: '25',
+    },
+    Mucinac600EffervescentTabletOrangeSugarFree: {
+      name: 'Mucinac 600 Effervescent Tablet Orange Sugar Free',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/chgo3dazl0gx0tqfrofw.jpg',
+      description: 'Mucinac 600 Effervescent Tablet Orange Sugar Free is a prescription medicine used in the treatment of respiratory disease with excessive mucus.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Respiratory disease with excessive mucus</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Fever</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Rash</li>' +
+          '</ul>',
+      usage: '<ul><li>Mucinac 600 Effervescent Tablet Orange Sugar Free is a mucolytic medication. It works by thinning the mucus (phlegm) making it easier to cough out.</li>' +
+              '</ul>',
+      },
+      price: '291',
+    },
+    };
+
+
+    // Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>
