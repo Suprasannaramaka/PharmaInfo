@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+
+
+
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+    ZerodolSPTablet: {
+      name:'Zerodol-SP Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_80,h_80/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/lgixlqxumpihdtbmvwyb.jpg',
+      description:'Zerodol-SP Tablet is a combination medicine used to relieve pain and swelling in various conditions like muscle pain, joint pain, and postoperative pain. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Indigestion</li>' +
+          '</ul>',
+          usage:'<ul><li>Zerodol-SP Tablet is a combination of three medicines: Aceclofenac, Paracetamol and Serratiopeptidase.</li>' +'</ul>'
+      },
+      price: '₹144/Tablet',
+    },
+    Zifi200Tablet: {
+      name:'Zifi 200 Tablet',
+img:"https://onemg.gumlet.io/l_watermark_346,w_80,h_80/a_ignore,w_80,h_80,c_pad,q_auto,f_auto/cropped/zesjgz3gt5mi69ja5mck.jpg",
+      description:'Zifi 200 Tablet is an antibiotic belonging that is used to treat a variety of bacterial infections.',
+      dosage: {
+        storage: '<ul><li>Store below 25°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Bacterial infections</li>' +'</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Indigestion</li>' +
+          '</ul>',
+         usage:'<ul><li>Zifi 200 Tablet is an antibiotic. It kills the bacteria by preventing them from forming the bacterial protective covering (cell wall) which is needed for them to survive.</li>' +'</ul>'
+      },
+      price: '₹10.9/Tablet',
+    },
+    ZerodolPTablet: {
+      name:'Zerodol P Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_80,h_80/a_ignore,w_80,h_80,c_pad,q_auto,f_auto/cropped/avrrcy33n6coazmhdycy.jpg',
+      description:'Zerodol P Tablet is a pain-relieving medicine. It is used to reduce pain and inflammation in conditions like rheumatoid arthritis, ankylosing spondylitis, and osteoarthritis. I',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li><Heartburn/li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+         usage:'<ul><li>Zerodol P Tablet is a combination of two medicines: Aceclofenac and Paracetamol. These medicines work by blocking the action of chemical messengers responsible for pain, fever and inflammation (redness and swelling).</li>' +'</ul>'
+      },
+      price: '₹7.4/Tablet',
+    },
+    ZedexCoughSyrup: {
+      name:'Zedex Cough Syrup',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_80,h_80,c_pad,q_auto,f_auto/edf726820ef04544b5193f21fd95ef06.jpg',
+      description:'Zedex Cough Syrup is a combination of two medicines used in the treatment of dry cough. It can provide temporary relief of cough due to throat irritation, sneezing, and running nose. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Dry cough</li>' +
+          '</ul>',
+        sideeffects: '<ul><li></li>' +
+          '<li>Sleepiness</li>' +
+          '<li>Sedation</li>' +
+          '<li>Dizziness</li>' +
+          '</ul>',
+        usage:'<ul><li>Zedex Cough Syrup is a combination of two medicines: Chlorpheniramine Maleate and Dextromethorphan Hydrobromide, which relieves dry cough.</li>' +'</ul>'
+      },
+      price: '₹174/Syrup',
+    },
+    ZerodolTH4Tablet: {
+      name:'Zerodol TH 4 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/j1idjqecpljhe9wxw1bz.jpg',
+      description:'Zerodol TH 4 Tablet is a combination medicine used in the treatment of pain due to muscle spasms.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Pain due to muscle spasm</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dizziness</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Abdominal pain</li>' +
+          '<li>Dyspepsia</li>' +
+          '</ul>',
+         usage:'<ul><li>Aceclofenac is a non-steroidal anti-inflammatory drug (NSAID) which works by blocking the release of certain chemical messengers that cause pain and inflammation (redness and swelling</li>' +'</ul>'
+      },
+      price: '₹104/Tablet',
+    },
+    ZerodolMRTablet: {
+      name:'Zerodol-MR Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_80,h_80,c_pad,q_auto,f_auto/cropped/knddo2oitzp6mpxrtyzl.jpg',
+      description:'Zerodol-MR Tablet is a combination medicine used in the treatment of pain due to muscle spasms.  ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Pain due to muscle spasm</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Sleepiness</li>' +
+          '<li>Nausea</li>' +
+          '<li>Heartburn</li>' +
+          '<li>Loss of appetite</li>' +
+          '</ul>',
+        usage:'<ul><li>Aceclofenac is a non-steroidal anti-inflammatory drug (NSAID) which works by blocking the release of certain chemical messengers that cause pain and inflammation (redness and swelling).</li>' +'</ul>'
+      },
+      price: '₹11.7/Tablet',
+    },
+    ZerodolTablet: {
+      name:'ZerodolTablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/qwqukawnffk5fk1zrsrc.jpg',
+      description:'Zerodol Tablet is a pain-relieving medicine. It alleviates pain and inflammation in conditions like rheumatoid arthritis, ankylosing spondylitis, and osteoarthritis.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Vomiting</li>' +
+          '<li>Nausea</li>' +
+          '<li>Indigestion</li>' +
+          '<li>Loss of appetite</li>' +
+          '</ul>',
+         usage:'<ul><li>Zerodol Tablet is a non-steroidal anti-inflammatory drugs (NSAID). It works by blocking the release of certain chemical messengers that cause pain and inflammation (redness and swelling).</li>' +'</ul>'
+      },
+      price: 'Rs.70/tablet',
+    },
+    ZonegranTablet: {
+      name:'Zonegran Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/e7qndoum8qcxbxkm5fbu.jpg',
+      description:'Zonegran Tablet is an anti-epileptic medicine used to treat seizures in epilepsy. It can be used by itself to treat adults or along with other medicines to treat adults and children. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Epilepsy</li>' +
+          '<li>Epilepsy/Seizures</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Memory impairment</li>' +
+          '<li>Drowsiness</li>' +
+          '<li>mpaired concentration</li>' +
+          '<li>Dizziness</li>' +
+          '</ul>',
+        usage:'<ul><li>Zonegran Tablet is an antiepileptic medication. It prevents seizures in patients with epilepsy by suppressing the abnormal and excessive activity of the nerve cells in the brain.</li>' +'</ul>'
+      },
+      price: '₹223',
+    },
+    Zolfresh10mgTablet: {
+      name:'Zolfresh 10mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_80,h_80,c_pad,q_auto,f_auto/c8e171ae60cf47c0ae954fc016e09134.jpg',
+      description:'Zolfresh 10mg Tablet is used for short-term treatment of insomnia. It reduces sleep onset time and frequent awakening at night. This medicine improves sleep maintenance and therefore ensures sound sleep.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Insomnia</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dizziness</li>' +
+          '<li>Sleepiness</li>' +
+          '<li>Headache</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+       usage:'<ul><li>Zolfresh 10mg Tablet belongs to a group of medicines called non-benzodiazepine hypnotics. It has hypnotic, sedative, and anticonvulsant (manages fits) properties. </li>' +'</ul>'
+      },
+      price: '₹9.27/Tablet',
+    },
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

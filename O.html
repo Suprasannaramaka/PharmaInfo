@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  Opdyta100mgInjection: {
+      name:'Opdyta 100mg Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Opdyta 100mg Injection is used in the treatment of non-small cell lung cancer, kidney cancer, head and neck cancer, melanoma, Hodgkins disease, and liver cancer.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Non-small cell lung cancer</li>' +
+          '<li>Kidney cancer</li>' +
+          '<li>Head and neck cancer</li>' +
+          '<li>Melanoma</li>' +
+          '<li>Hodgkin’s disease</li>' +
+          '<li>Liver cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Rash</li>' +
+          '<li>Weakness</li>' +
+          '<li>Headache</li>' +
+          '<li>Musculoskeletal (bone, muscle or joint) pain</li>' +
+          '<li>Upper respiratory tract infection</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Constipation</li>' +
+          '<li>Breathlessness</li>' +
+          '</ul>',
+          usage:'<ul><li>Opdyta 100mg Injection is an anti-cancer medication. It works by blocking a protein (PD-1) on the surface of certain immune cells called T-cells. This action activates the T-cells to locate and kill cancer cells.</li>' +'</ul>'
+      },
+      price: '₹99500',
+    },
+    Olumiant4mgTablet: {
+      name:'Olumiant 4mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/27d88b82179f4098a7176c19c6943af3.jpg',
+      description:'lumiant 4mg Tablet is a Janus kinase inhibitor used to treat moderate to severe rheumatoid arthritis. It helps decrease pain, tenderness, and swelling in the joints by reducing inflammation. It also helps slow the progression of bone and joint damage. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Rheumatoid arthritis</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Upper respiratory tract infection</li>' +
+          '<li>Urinary tract infection</li>' +
+          '<li>Bronchitis (inflammation of the airways)</li>' +
+          '</ul>',
+          usage:'<ul><li>Olumiant 4mg Tablet is a Janus kinase (JAK) inhibitor that inhibits the activity of selective JAK1 and JAK2 enzymes, which interfere with the JAK-STAT signaling pathway (a chain of protein-cell interactions, involved in processes such as immunity, cell division, cell death, and tumor formation).</li>' +'</ul>'
+      },
+      price: '₹8200',
+    },
+    Opdyta40mgInjection: {
+      name:'Opdyta 40mg Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Opdyta 40mg Injection is used in the treatment of non-small cell lung cancer, kidney cancer, head and neck cancer, melanoma, Hodgkins disease, and liver cancer.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Non-small cell lung cancer</li>' +
+          '<li>Kidney cancer</li>' +
+          '<li>Head and neck cancer</li>' +
+          '<li>Melanoma</li>' +
+          '<li>Hodgkin’s disease</li>' +
+          '<li>Liver cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Rash</li>' +
+          '<li>Weakness</li>' +
+          '<li>Headache</li>' +
+          '<li>Musculoskeletal (bone, muscle or joint) pain</li>' +
+          '<li>Fever</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Back pain</li>' +
+          '</ul>',
+          usage:'<ul><li>Opdyta 40mg Injection is an anti-cancer medication. It works by blocking a protein (PD-1) on the surface of certain immune cells called T-cells. This action activates the T-cells to locate and kill cancer cells.</li>' +'</ul>'
+      },
+      price: '₹39800',
+    },
+    Olumiant2mgTablet: {
+      name:'Olumiant 2mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/71b2ec53dcf64d0ca7427b9a21d5d180.jpg',
+      description:'Olumiant 2mg Tablet is a Janus kinase inhibitor used to treat moderate to severe rheumatoid arthritis. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Rheumatoid arthritis</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Upper respiratory tract infection</li>' +
+          '<li>Urinary tract infection</li>' +
+          '<li>Bronchitis (inflammation of the airways)</li>' +
+          '</ul>',
+          usage:'<ul><li>Olumiant 2mg Tablet is a Janus kinase (JAK) inhibitor that inhibits the activity of selective JAK1 and JAK2 enzymes, which interfere with the JAK-STAT signaling pathway (a chain of protein-cell interactions, involved in processes such as immunity, cell division, cell death, and tumor formation).</li>' +'</ul>'
+      },
+      price: '₹8200',
+    },
+    Oncodox50mgInjection: {
+      name:'Oncodox 50mg Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Oncodox 50mg Injection is used in the treatment of some kinds of cancer. It is also used in the treatment of breast cancer, where there is an increased cardiac risk. It can be used on its own, or sometimes given together with certain other medicines as part of combination chemotherapy. ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Low blood platelets</li>' +
+          '<li>Weakness</li>' +
+          '<li>Fatigue</li>' +
+          '<li>Fever</li>' +
+          '</ul>',
+          usage:'<ul><li>Oncodox 50mg Injection is an anti-cancer medication. It works by damaging the genetic material (DNA) of the cancer cells and stops their growth and multiplication.</li>' +'</ul>'
+      },
+      price: '₹814',
+    },
+    ONCOGEM1000MGINJECTION: {
+      name:'ONCOGEM 1000 MG INJECTION',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'ONCOGEM 1000 MG INJECTION is used in the treatment of non-small cell lung cancer, breast cancer, pancreatic cancer, urinary bladder cancer, and ovarian cancer. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Non-small cell lung cancer</li>' +
+          '<li>Breast cancer</li>' +
+          '<li>Pancreatic cancer</li>' +
+          '<li>Urinary bladder cancer</li>' +
+          '<li>Ovarian cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Loss of appetite</li>' +
+          '<li>Hair loss</li>' +
+          '<li>Low blood platelets</li>' +
+          '<li>Allergic reaction</li>' +
+          '<li>Decreased white blood cell count</li>' +
+          '</ul>',
+          usage:'<ul><li>ONCOGEM 1000 MG INJECTION interferes with the growth of DNA and RNA of the cancer cells by substituting their building blocks. It prevents the cancer cells from growing and multiplying.</li>' +'</ul>'
+      },
+      price: '₹5814.9',
+    },
+    Oncogem200mgINJECTION: {
+      name:'Oncogem 200mg INJECTION',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Oncogem 200mg INJECTION is used in the treatment of non-small cell lung cancer, breast cancer, pancreatic cancer, urinary bladder cancer, and ovarian cancer.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Bacterial & parasitic infections</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Headache</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '</ul>',
+          usage:'<ul><li>O2 Tablet is a combination of two antibiotics: Ofloxacin and Ornidazole. Ofloxacin works by preventing the bacterial cells from dividing and repairing, thereby killing the bacteria. Ornidazole kills parasites and anaerobic bacteria that cause infections by damaging their DNA. Together, they treat your infection effectively.</li>' +'</ul>'
+      },
+      price: '₹1221.21',
+    },
+    O2Tablet: {
+      name:'O2 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/dugpex0h82v1fgxwb5yi.jpg',
+      description:' O2 Tablet is a combination of two antibiotics. It is used in the treatment of bacterial and parasitic infections. It effectively treats a wide range of bacterial infections that may occur in the teeth, lungs, gastrointestinal infections, urinary and genital tract.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Bacterial & parasitic infections</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '<li>Headache</li>' +
+          '<li>Vaginal inflammation</li>' +
+          '</ul>',
+          usage:'<ul><li>O2 Tablet is a combination of two antibiotics: Ofloxacin and Ornidazole. Ofloxacin works by preventing the bacterial cells from dividing and repairing, thereby killing the bacteria. Ornidazole kills parasites and anaerobic bacteria that cause infections by damaging their DNA. Together, they treat your infection effectively.</li>' +'</ul>'
+      },
+      price: '₹189',
+    },
+    Omnacortil10TabletDT: {
+      name:'Omnacortil 10 Tablet DT',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/wq7ax30uaf5rhhgvv2l5.jpg',
+      description:'Omnacortil 10 Tablet DT is a steroid. It is used to treat a wide variety of medical conditions such as severe allergic reactions, allergic conditions, asthma, rheumatic disorder, skin and eye disorders, and nephrotic syndrome.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Severe allergic reactions</li>' +
+            '<li>Treatment of Allergic conditions</li>' +
+          '<li>Treatment of Eye disorders</li>' +
+          '<li>Treatment of Nephrotic syndrome</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Reduction in bone density</li>' +
+          '<li>Upset stomach</li>' +
+          '<li>Behavioral changes</li>' +
+          '<li>Mood changes</li>' +
+          '<li>Weight gain</li>' +
+          '</ul>',
+          usage:'<ul><li>Omnacortil 10 Tablet DT is a steroid which works by blocking the production of certain chemical messengers in the body that cause inflammation (redness and swelling) and allergies.</li>' +'</ul>'
+      },
+      price: '₹13.43',
+    },
+      
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

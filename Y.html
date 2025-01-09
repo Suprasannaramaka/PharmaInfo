@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+
+
+
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+    YasminTablet: {
+      name:'Yasmin Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/je5e4lsgtyfip3ptwrrn.jpg',
+      description:'Yasmin Tablet is a combination of two medicines used for contraception (to prevent pregnancy) and in the treatment of irregular periods. It helps to prevent the release and fertilization of the egg. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Contraception</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Stomach pain</li>' +
+          '<li>Headache</li>' +
+          '<li>Irregular uterine bleeding</li>' +
+          '</ul>',
+          usage:'<ul><li>Yasmin Tablet is a combined oral contraceptive pill. It works by preventing the release of egg (ovulation) and affecting sperm movement in the womb to prevent its union with the egg</li>' +'</ul>'
+      },
+      price: '₹643',
+    },
+    YaminiTablet: {
+      name:'Yamini Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/qpbhvxhpswf873kuf81p.jpg',
+      description:'Yamini Tablet is a combination of two medicines used for contraception (to prevent pregnancy) and in the treatment of irregular periods ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Contraception</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Stomach pain</li>' +
+          '<li>Breast pain</li>' +
+          '<li>Irregular uterine bleeding</li>' +
+          '<li>Vaginal discharge</li>' +
+          '</ul>',
+          usage:'<ul><li>Yamini Tablet is a combined oral contraceptive pill. It works by preventing the release of egg (ovulation) and affecting sperm movement in the womb to prevent its union with the egg.</li>' +'</ul>'
+      },
+      price: '₹190',
+    },
+    YeesDCapsuleSR: {
+      name:'Yees-D Capsule SR',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/1c2ca9d79d244e739d9fd5ca351f9a36.jpg',
+      description:'Yees-D Capsule SR is a prescription medicine used to treat gastroesophageal reflux disease (Acid reflux) and indigestion by relieving the symptoms such as heartburn, stomach pain, or irritation. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Gastroesophageal reflux disease (Acid reflux)</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Flatulence</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Dryness in mouth</li>' +
+          '<li>Headache</li>' +
+          '</ul>',
+          usage:'<ul><li><Yees-D Capsule SR is a combination of two medicines: Domperidone and Esomeprazole. Domperidone is a prokinetic which works on the upper digestive tract to increase the movement of the stomach and intestines, allowing the food to move more easily through the stomach/li>' +'</ul>'
+      },
+      price: '₹127',
+    },
+    Yees40Tablet: {
+      name:'Yees 40 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/792312e033854c43b19d37eec6f944f8.jpg',
+      description:'Yees 40 Tablet is used to treat conditions related to excessive stomach acid production, such as gastroesophageal reflux disease (GERD), peptic ulcer disease, and Zollinger-Ellison syndrome ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Acidity</li>' +
+            '<li>Gastroesophageal reflux disease (Acid reflux)</li>' +
+          '<li>Peptic ulcer disease</li>' +
+          '<li>Treatment of Zollinger-Ellison syndrome</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Dryness in mouth</li>' +
+          '<li>Abdominal pain</li>' +
+          '<li>Flatulence</li>' +
+          '</ul>',
+          usage:'<ul><li>Yees 40 Tablet is a proton pump inhibitor (PPI). It works by reducing the amount of acid in the stomach which helps in relief of acid related indigestion and heartburn.</li>' +'</ul>'
+      },
+      price: '₹170',
+    },
+    YAZTablet: {
+      name:'YAZ Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/yd4mvo2yoxgja7lbmmls.jpg',
+      description:'YAZ Tablet is a combination of two medicines used for contraception (to prevent pregnancy) and in the treatment of irregular periods. It helps to prevent the release and fertilization of the egg. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Contraception</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Stomach pain</li>' +
+          '<li>Headache</li>' +
+          '<li>Irregular uterine bleeding</li>' +
+          '<li>Vaginal yeast infection</li>' +
+          '</ul>',
+          usage:'<ul><li>YAZ Tablet is a combined oral contraceptive pill. It works by preventing the release of egg (ovulation) and affecting sperm movement in the womb to prevent its union with the egg. It also changes the lining of the womb and renders it unsuitable for pregnancy.</li>' +'</ul>'
+      },
+      price: '₹441',
+    },
+    YaminiLSKit: {
+      name:' Yamini LS Kit',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_690,h_700/a_ignore,w_80,h_80,c_pad,q_auto,f_auto/cropped/cmucyvo22rct238gxpdl.jpg',
+      description:'Yamini LS Kit is a combination of two medicines used for contraception (to prevent pregnancy) and in the treatment of irregular periods. It helps to prevent the release and fertilization of the egg. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Contraception</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Stomach pain</li>' +
+          '<li>Headache</li>' +
+          '<li>Breast pain</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+          usage:'<ul><li>Yamini LS Kit is a combined oral contraceptive pill. It works by preventing the release of egg (ovulation) and affecting sperm movement in the womb to prevent its union with the egg. It also changes the lining of the womb and renders it unsuitable for pregnancy.</li>' +'</ul>'
+      },
+      price: '₹395',
+    },
+    YawPlus10mg30mgTablet: {
+      name:'YawPlus 10mg/30mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/caf9d53c709044bd8e852f251212667e.jpg',
+      description:'Yaw Plus 10mg/30mg Tablet is a combination of two medicines used in the treatment of premature ejaculation in adult men. It increases blood flow to the penis to help men get an erection. This medicine should be used only when prescribed by a doctor. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Vomiting</li>' +
+          '<li>Indigestion</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Headache</li>' +
+          '</ul>',
+          usage:'<ul><li>Yaw Plus 10mg/30mg Tablet is a combination of two medicines : Tadalafil and Dapoxetine, which treat premature ejaculation</li>' +'</ul>'
+      },
+      price: '₹309',
+    },
+    Yescort6mgTablet: {
+      name:'Yescort 6mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Yescort 6mg Tablet belongs to a group of medicines called steroids. It is used for the treatment of various diseases and conditions such as inflammatory conditions and autoimmune conditions. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Inflammatory conditions</li>' +
+            '<li>Treatment of Autoimmune conditions</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Increased appetite</li>' +
+          '<li>Frequent urge to urinate</li>' +
+          '<li>Weight gain</li>' +
+          '<li>Abnormal hair growth</li>' +
+          '</ul>',
+          usage:'<ul><li>Yescort 6mg Tablet is a corticosteroid. It increases the level of glucocorticoid in the body and works by decreasing the formation of substances that cause inflammation and suppresses immunity to stop self damage to the body by the immune system</li>' +'</ul>'
+      },
+      price: '₹84.6',
+    },
+    Yaw10Tablet: {
+      name:'Yaw 10 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/f06cb5adbf0441718b184b94f22d6acb.jpg',
+      description:'Yaw 10 Tablet is used to treat erectile dysfunction (ED) in men and pulmonary arterial hypertension (PAH). It increases blood flow to the penis to help men get an erection. In PAH, it relaxes or widens the blood vessels inside the lungs, which reduces blood pressure in the lungs. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Pulmonary arterial hypertension (PAH)</li>' +
+            '<li>Treatment of Erectile dysfunction</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Back pain</li>' +
+          '<li>Flushing (sense of warmth in the face, ears, neck and trunk)</li>' +
+          '<li>Muscle pain</li>' +
+          '<li>Respiratory tract infection</li>' +
+          '</ul>',
+          usage:'<ul><li>Yaw 10 Tablet is a phosphodiesterase (PDE-5) inhibitor. It works in erectile dysfunction by increasing blood flow to the penis by relaxing the muscles in penile blood vessels. Yaw 10 Tablet also relaxes or widens the blood vessels inside the lungs</li>' +'</ul>'
+      },
+      price: '₹220',
+    },
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

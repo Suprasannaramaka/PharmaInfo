@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+    Wysolone10TabletDT: {
+      name:'Wysolone 10 Tablet DT',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/wvvokbbfd65t96xgxw8d.jpg',
+      description:'Wysolone 10 Tablet DT is a steroid. It is used to treat a wide variety of medical conditions such as severe allergic reactions, allergic conditions, asthma, rheumatic disorder, skin and eye disorders, and nephrotic syndrome. It suppresses the immune system and provides relief from inflammation. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Severe allergic reactions</li>' +
+            '<li>Treatment of Allergic conditions</li>' +
+          '<li>Treatment of Rheumatic disorder</li>' +
+          '<li>Treatment of Skin disorders</li>' +
+          '<li>Treatment of Eye disorders</li>' +
+          '<li>Treatment of Nephrotic syndrome</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Reduction in bone density</li>' +
+          '<li>Upset stomach</li>' +
+          '<li>Behavioral changes</li>' +
+          '<li>Mood changes</li>' +
+          '<li>Weight gain</li>' +
+          '</ul>',
+          usage:'<ul><li>Wysolone 10 Tablet DT is a steroid which works by blocking the production of certain chemical messengers in the body that cause inflammation (redness and swelling) and allergies.</li>' +'</ul>'
+      },
+      price: '',
+    },
+    Wysolone5TabletDT: {
+      name:'Wysolone 5 Tablet DT',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/kdcu93zucrees9vc9cbu.jpg',
+      description:'Wysolone 5 Tablet DT is a steroid. It is used to treat a wide variety of medical conditions such as severe allergic reactions, allergic conditions, asthma, rheumatic disorder, skin and eye disorders, and nephrotic syndrome. It suppresses the immune system and provides relief from inflammation. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Severe allergic reactions</li>' +
+            '<li>Treatment of Allergic conditions</li>' +
+          '<li>Treatment of Rheumatic disorder</li>' +
+          '<li>Treatment of Skin disorders</li>' +
+          '<li>Treatment of Eye disorders</li>' +
+          '<li>Treatment of Nephrotic syndrome</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Reduction in bone density</li>' +
+          '<li>Upset stomach</li>' +
+          '<li>Behavioral changes</li>' +
+          '<li>Mood changes</li>' +
+          '<li>Weight gain</li>' +
+          '</ul>',
+          usage:'<ul><li></li>' +'</ul>'
+      },
+      price: '₹9.1/Strip',
+    },
+    WikorylDSSyrupOrange: {
+      name:'Wikoryl DS Syrup Orange',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/e626126870084de190c5eb9dbde8d64d.jpg',
+      description:'Wikoryl DS Syrup Orange is commonly prescribed in children to treat symptoms such as runny nose, cough, sneezing, watery eyes, sore throat, body ache, and fever. These symptoms are usually associated with common cold, hay fever (allergic rhinitis), and other respiratory tract conditions. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Common cold</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Diarrhea</li>' +
+          '<li>Rash</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Fear</li>' +
+          '<li>Restlessness</li>' +
+          '<li>Discomfort when urinating</li>' +
+          '<li>Hallucination</li>' +
+          '</ul>',
+          usage:'<ul><li>Wikoryl DS Syrup Orange is a combination of four medicines: Chlorpheniramine Maleate, Phenylephrine, Paracetamol, and Sodium Citrate, which relieves common cold symptoms. Chlorpheniramine is an antiallergic that relieves allergy symptoms like runny nose, watery eyes, and sneezing. </li>' +'</ul>'
+      },
+      price: '₹85',
+    },
+    Wikoryl10Tablet: {
+      name:'Wikoryl 10 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/8e786e8febbc4c85b199f50e512164f9.jpg',
+      description:'Wikoryl 10 Tablet is a medicine used in the treatment of common cold symptoms. It provides relief from symptoms such as headache, sore throat, runny nose, muscular pain, and fever. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Common cold</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dizziness</li>' +
+          '<li>Headache</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '<li>Nausea</li>' +
+          '</ul>',
+          usage:'<ul><li>Take this medicine in the dose and duration as advised by your doctor. Swallow it as a whole. Do not chew, crush or break it. Wikoryl 10 Tablet may be taken with or without food, but it is better to take it at a fixed time.</li>' +'</ul>'
+      },
+      price: '',
+    },
+    WalamycinSuspension: {
+      name:'Walamycin Suspension',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/mw4lttp2tuda9czsixcg.jpg',
+      description:'Walamycin Suspension is an antibiotic that fights bacteria. It is used to treat certain types of serious bacterial infections of the stomach or intestines, which are not responding to other antibiotics. It works by killing the bacteria that cause these problems. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Severe bacterial infections</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Diarrhea</li>' +
+          '</ul>',
+          usage:'<ul><li>Take this medicine in the dose and duration as advised by your doctor. Check the label for directions before use. Measure it with a measuring cup and take it by mouth. Shake well before use. Walamycin Suspension may be taken with or without food, but it is better to take it at a fixed time.</li>' +'</ul>'
+      },
+      price: '',
+    },
+    Wysolone20TabletDT: {
+      name:'Wysolone 20 Tablet DT',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/2f639b8530924cabbbee0b28ad814600.jpg',
+      description:' Wysolone 20 Tablet DT is a steroid. It is used to treat a wide variety of medical conditions such as severe allergic reactions, allergic conditions, asthma, rheumatic disorder, skin and eye disorders, and nephrotic syndrome. It suppresses the immune system and provides relief from inflammation.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Severe allergic reactions</li>' +
+            '<li>Treatment of Allergic conditions</li>' +
+          '<li>Treatment of Rheumatic disorder</li>' +
+          '<li>Treatment of Skin disorders</li>' +
+          '<li>Treatment of Eye disorders</li>' +
+          '<li>Treatment of Nephrotic syndrome</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Reduction in bone density</li>' +
+          '<li>Upset stomach</li>' +
+          '<li>Behavioral changes</li>' +
+          '<li>Weight gain</li>' +
+          '</ul>',
+          usage:'<ul><li>Take this medicine in the dose and duration as advised by your doctor. Dissolve it in a glass of water before taking it. Wysolone 20 Tablet DT may be taken with or without food, but it is better to take it at a fixed time.</li>' +'</ul>'
+      },
+      price: '₹33.4',
+    },
+    WikorylAFSyrup: {
+      name:' WikorylAFSyrup',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/64b489868cea4bfd9e227f688177a136.jpg',
+      description:'Wikoryl AF Syrup is a medicine used in symptomatic treatment of common cold in children. It provides quick relief from common cold symptoms such as runny nose, stuffy nose, and sneezing. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Common cold</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Vomiting</li>' +
+          '<li>Restlessness</li>' +
+          '<li>Anxiety</li>' +
+          '<li>Dizziness</li>' +
+          '<li>High blood pressure</li>' +
+          '<li>Pale skin</li>' +
+          '<li>Dry nose</li>' +
+          '<li>Seizure</li>' +
+          '</ul>',
+          usage:'<ul><li>Chlorpheniramine Maleate is an antiallergic which relieves allergy symptoms like runny nose, watery eyes and sneezing. Phenylephrine is a decongestant which narrows the small blood vessels providing relief from congestion or stuffiness in the nose.</li>' +'</ul>'
+      },
+      price: '₹80.8/Syrup',
+    },
+    WikorylOralDropsMixFruit: {
+      name:'Wikoryl Oral Drops Mix Fruit',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/64d8ed3b7e53426385d8142238ee759e.jpg',
+      description:'Wikoryl Oral Drops Mix Fruit is commonly prescribed in children to treat common cold symptoms like sore throat, runny nose, cough, sneezing, watery eyes, body ache, and fever. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Common cold</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Diarrhea</li>' +
+          '<li>Palpitations</li>' +
+          '<li>Dizziness</li>' +
+          '<li>Weakness</li>' +
+          '</ul>',
+          usage:'<ul><li><Wikoryl Oral Drops Mix Fruit is a combination of three medicines: Chlorpheniramine, paracetamol, and phenylephrine which relieves common cold symptoms. Chlorpheniramine is an antiallergic that relieves allergy symptoms like runny nose, watery eyes, and sneezing. Paracetamol is an analgesic (pain reliever) and antipyretic (fever reducer). It blocks the release of certain chemical messengers in the brain that are responsible for pain and fever. Phenylephrine is a nasal decongestant that narrows the small blood vessels providing relief from congestion or stuffiness in the nose./li>' +'</ul>'
+      },
+      price: '₹115.45/Oral Drops',
+    },
+    Warf5Tablet: {
+      name:'Warf 5 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/1001e3ba0dc04adaa918f5a190b05941.jpg',
+      description:'Warf 5 Tablet is an oral anticoagulant which helps prevent the formation of harmful blood clots in the legs, lungs, brain and heart. It is used for deep vein thrombosis, pulmonary embolism and stroke prevention. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Deep vein thrombosis</li>' +
+            '<li>Pulmonary embolism</li>' +
+          '<li>Stroke prevention</li>' +
+          '<li>Blood clots</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Bleeding</li>' +
+          '</ul>',
+          usage:'<ul><li>Warf 5 Tablet is an anticoagulant. It works by preventing the formation of harmful blood clots. Although it does not dissolve the existing blood clots, it prevents them from growing larger and causing blockages in the blood vessels.</li>' +'</ul>'
+      },
+      price: '₹67.2',
+    },
+      
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

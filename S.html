@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  SpexiCapsule: {
+      name:'Spexib Capsule',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/c70f4587b0b0497cbbec4743699f14fb.jpg',
+      description:'Spexib Capsule is used in the treatment of non-small cell lung cancer. It shows its working by stopping or slowing down the growth of cancer cells. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Non-small cell lung cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Diarrhea</li>' +
+          '<li>Fatigue</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '</ul>',
+          usage:'<ul><li>Spexib Capsule is an anti-cancer medication. It works by blocking the action of the abnormal protein that signals cancer cells to multiply. This helps to stop or slow the spread of cancer cells.</li>' +'</ul>'
+      },
+      price: '₹5495',
+    },
+    Sprycel70mgTablet: {
+      name:'Sprycel 70mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Sprycel 70mg Tablet is used in the treatment of blood cancer (chronic myeloid leukaemia). It is used in patients whose disease could not be treated with other medications for leukaemia or who cannot take these medications because of side effects. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Blood cancer (Chronic myeloid leukaemia)</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Constipation</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Anemia (low number of red blood cells)</li>' +
+          '<li>Pleural effusion</li>' +
+          '<li>Pulmonary hypertension (high blood pressure)</li>'+
+          '<li>Generalized edema</li>'+
+          '<li>Pericardial effusion</li>'+
+          '</ul>',
+          usage:'<ul><li>Sprycel 70mg Tablet is an anti-cancer medication. It works by blocking the action of the abnormal protein that signals cancer cells to multiply. This helps to stop or slow the spread of cancer cells.</li>' +'</ul>'
+      },
+      price: '₹211538.51',
+    },
+    Syndyma100mgInjection: {
+      name:'Syndyma 100mg Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Syndyma 100mg Injection is an anticancer medication.  ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '<li>Ovarian cancer</li>' +
+          '<li>Cervical cancer</li>' +
+          '<li>Kidney cancer</li>' +
+          '<li>Brain tumor</li>'+
+          '<li>Non-small cell lung cancer</li>'+
+          '</ul>',
+        sideeffects: '<ul><li>Inflammation of the nose</li>' +
+          '<li>Nosebleeds</li>' +
+          '<li>Headache</li>' +
+          '<li>High blood pressure</li>' +
+          '</ul>',
+          usage:'<ul><li>Syndyma 100mg Injection is a anti-angiogenic medication. It works by blocking a protein called vascular endothelial growth factor (VEGF). This stops the formation of blood vessels that bring oxygen and nutrients to cancerous cells.</li>' +'</ul>'
+      },
+      price: '₹32250',
+    },
+    SyndymaInjection: {
+      name:'Syndyma 400mg/16ml Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/yto7r0ikabhosrc3g4dn.jpg',
+      description:'Syndyma 400mg/16ml Injection is an anticancer medication. It is used in the treatment of cancer of colon and rectum, non-small cell lung cancer, kidney cancer, brain tumor, ovarian and cervical cancer.  ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '<li>Ovarian cancer</li>' +
+          '<li>Cervical cancer</li>' +
+          '<li>Kidney cancer</li>' +
+          '<li>Brain tumor</li>' +
+          '<li>Non-small cell lung cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nosebleeds</li>' +
+          '<li>Headache</li>' +
+          '<li>High blood pressure</li>' +
+          '<li>Inflammation of the nose</li>' +
+          '<li>Back pain</li>' +
+          '<li>Protein in urine</li>' +
+          '</ul>',
+          usage:'<ul><li>It works by blocking a protein called vascular endothelial growth factor (VEGF). This stops the formation of blood vessels that bring oxygen and nutrients to cancerous cells.</li>' +'</ul>'
+      },
+      price: 'Not Mentioned',
+    },
+    Scapho150mgInjection: {
+      name:'Scapho 150mg Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/e744cc8737ff4e2e8dc98ca3a9696e36.jpg',
+      description:'Scapho 150mg Injection is used to treat a variety of conditions, such as psoriatic arthritis, ankylosing spondylitis, and psoriasis. ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Psoriasis</li>' +
+          '<li>Treatment of Ankylosing spondylitis</li>' +
+          '<li>Treatment of Psoriatic arthritis</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Common cold</li>' +
+          '<li>Nasopharyngitis (inflammation of the throat and nasal passages)</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Upper respiratory tract infection</li>' +
+          '</ul>',
+          usage:'<ul><li>Scapho 150mg Injection is a monoclonal antibodies. It shows its action by neutralizing the activity of a protein called IL-17A, which is responsible for the symptoms of psoriasis, psoriatic arthritis, and ankylosing spondylitis.</li>' +'</ul>'
+      },
+      price: '₹16000',
+    },
+    Sutent125mgCapsule: {
+      name:'Sutent 12.5mg Capsule',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Sutent 12.5mg Capsule is a medicine used in the treatment of kidney cancer and gastrointestinal stromal tumor. It works by blocking specific enzymes that promote the growth of cancer cells. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Kidney cancer</li>' +
+          '<li>Gastrointestinal stromal tumour</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Hand-foot syndrome</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Bleeding disorder</li>' +
+          '<li>Abdominal pain</li>' +
+          '<li>Rash</li>' +
+          '</ul>',
+          usage:'<ul><li>Sutent 12.5mg Capsule is an anti-cancer medication. It works by binding and blocking certain cell surface protein (tyrosine kinase) responsible for the propagation of cancer growth. It also restricts the growth of new blood vessels within the tumor. This is how it prevents the proliferation of malignant cancers.</li>' +'</ul>'
+      },
+      price: '₹1732.14',
+    },
+    Sutent50mgCapsule: {
+      name:'Sutent 50mg Capsule',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Sutent 50mg Capsule is a medicine used in the treatment of kidney cancer and gastrointestinal stromal tumor. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Kidney cancer</li>' +
+          '<li><Gastrointestinal stromal tumour/li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Hand-foot syndrome</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Bleeding disorder</li>' +
+          '<li>Abdominal pain</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '</ul>',
+          usage:'<ul><li>Sutent 50mg Capsule is an anti-cancer medication. It works by binding and blocking certain cell surface protein (tyrosine kinase) responsible for the propagation of cancer growth. It also restricts the growth of new blood vessels within the tumor. This is how it prevents the proliferation of malignant cancers.</li>' +'</ul>'
+      },
+      price: '₹61003.44',
+    },
+    Sutent25mgCapsule: {
+      name:'Sutent 25mg Capsule',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'Sutent 25mg Capsule is a medicine used in the treatment of kidney cancer and gastrointestinal stromal tumor. It works by blocking specific enzymes that promote the growth of cancer cells.  ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Kidney cancer</li>' +
+          '<li>Gastrointestinal stromal tumour</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Hand-foot syndrome</li>' +
+          '<li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Bleeding disorder</li>' +
+          '</ul>',
+          usage:'<ul><li>Sutent 25mg Capsule is an anti-cancer medication. It works by binding and blocking certain cell surface protein (tyrosine kinase) responsible for the propagation of cancer growth. It also restricts the growth of new blood vessels within the tumor.</li>' +'</ul>'
+      },
+      price: '₹29204.51',
+    },
+    SinarestNewTablet: {
+      name:'Sinarest New Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_80,h_80/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/iax6d6w1d1bwzjtzwec8.jpg',
+      description:'Sinarest New Tablet is a medicine used in the treatment of common cold symptoms.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Common cold</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dizziness</li>' +
+          '<li>Nausea</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '<li>Headache</li>' +
+          '<li>Anxiety</li>' +
+          '</ul>',
+          usage:'<ul><li>It provides relief from symptoms such as headache, sore throat, runny nose, muscular pain, and fever.</li>' +'</ul>'
+      },
+      price: '₹120',
+    },
+      
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>

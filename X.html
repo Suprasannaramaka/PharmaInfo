@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+</div>
+</header>
+    <div class="medicine-details" id="medicineDetails">
+        <!---Medicine details will be dyanamically loaded here-->
+        </div>
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for sideeeffects-->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for safetyadvice-->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+    Xbira250mgTablet: {
+      name:'Xbira 250mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/exgv8xhwmu1kawxf73lt.jpg',
+      description:'Xbira 250mg Tablet is used in the treatment of cancer of the prostate gland. It may be also used to treat other conditions, as determined by the doctor. It is sometimes used with certain other medicines as part of combination chemotherapy. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Prostate cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Edema (swelling)</li>' +
+          '<li>Vomiting</li>' +
+          '<li>High blood pressure</li>' +
+          '<li>Cough</li>' +
+          '</ul>',
+          usage:'<ul><li>Xbira 250mg Tablet is an anticancer medication. It works by preventing androgen (male hormone) production in man. This is done by inhibiting an enzyme (CYP17) that is responsible for the production of androgen. This is how it slows down the growth of prostate cancer.</li>' +'</ul>'
+      },
+      price: '₹10249',
+    },
+    XylutideCapsule: {
+      name:'Xylutide Capsule',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cnmbpm3abbdp06rhdysr.jpg',
+      description:'Xylutide Capsule is used in the treatment of cancer of the prostate gland. It may be also used to treat other conditions, as determined by the doctor. It works by blocking the effects of male hormones such as testosterone. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Prostate cancer</li>' +
+            '<li>Polycystic ovarian syndrome (PCOS)</li>' +
+            '<li>Excessive hair growth</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Weakness</li>' +
+          '<li>Decreased appetite</li>' +
+          '<li>Constipation</li>' +
+          '</ul>',
+          usage:'<ul><li>Xylutide Capsule is an antiandrogens. It works by blocking the effect of the natural male hormones on the growth of prostate cells.</li>' +'</ul>'
+      },
+      price: '₹188.61/Capsule',
+    },
+    Xbira500Tablet: {
+      name:'Xbira 500 Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/746db7f173b847db9622edf1d58908dd.jpg',
+      description:'Xbira 500 Tablet is used in the treatment of cancer of the prostate gland. It may be also used to treat other conditions, as determined by the doctor. It is sometimes used with certain other medicines as part of combination chemotherapy. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Prostate cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Edema (swelling)</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Decreased potassium level in blood</li>' +
+          '<li>Anemia (low number of red blood cells)</li>' +
+          '</ul>',
+          usage:'<ul><li>Xbira 500 Tablet is an anticancer medication. It works by preventing androgen (male hormone) production in man. This is done by inhibiting an enzyme (CYP17) that is responsible for the production of androgen. This is how it slows down the growth of prostate cancer.</li>' +'</ul>'
+      },
+      price: '₹10560',
+    },
+    Xylutide40mgCapsule: {
+      name:'Xylutide 40mg Capsule',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/7c458a44cc4942a2820aa59430beb7f6.jpg',
+      description:'Xylutide 40mg Capsule is used in the treatment of cancer of the prostate gland. It may be also used to treat other conditions, as determined by the doctor. It works by blocking the effects of male hormones such as testosterone. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Prostate cancer</li>' +
+            '<li>Polycystic ovarian syndrome (PCOS)</li>' +
+          '<li>Excessive hair growth</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+            '<li>High blood pressure</li>' +
+            '<li>Decreased appetite</li>' +
+            '<li>Weakness</li>' +
+          '</ul>',
+          usage:'<ul><li>Xylutide 40mg Capsule is an antiandrogens. It works by blocking the effect of the natural male hormones on the growth of prostate cells.</li>' +'</ul>'
+      },
+      price: '₹830',
+    },
+    XPlat100Injection: {
+      name:'X-Plat 100 Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description:'X-Plat 100 Injection is used in the treatment of cancer of colon and rectum. It shows its working by stopping or slowing down the growth of cancer cells. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Injection site reaction</li>' +
+          '<li>Weight gain</li>' +
+          '<li>Conjunctivitis</li>' +
+          '<li><Conjunctivitis/li>' +
+          '</ul>',
+          usage:'<ul><li>X-Plat 100 Injection is an anti-cancer medication. It works by damaging the genetic material (DNA and RNA) of the cancer cells which stops their growth and multiplication.</li>' +'</ul>'
+      },
+      price: '₹2840/Injection',
+    },
+    Xeloda500mgTablet: {
+      name:'Xeloda 500mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/kdcfsegiqwsqt1u9zrqu.jpg',
+      description:'Xeloda 500mg Tablet is used in the treatment of cancer of breast, colon, and rectum. It may be also used to treat other conditions, as determined by the doctor. It is used alone or in combination with some other medicine as a part of chemotherapy. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+            '<li><Breast cancer/li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Increased bilirubin in the blood</li>' +
+          '<li>Diarrhea</li>' +
+          '<li>Fatigue</li>' +
+          '<li>Weight loss</li>' +
+          '</ul>',
+          usage:'<ul><li>Xeloda 500mg Tablet is an anticancer medication. Inside the body, this medicine gets converted into 5-fluorouracil (chemical). This chemical hampers the synthesis of genetic materials (RNA and DNA) in the cancer cells, thereby interferes with their growth. This slows down the growth of cancer cells and eventually kills them.</li>' +'</ul>'
+      },
+      price: '₹1224',
+    },
+    XylocaineJelly: {
+      name:'Xylocaine 2% Jelly',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/82aab6aeb1c142ee983dae9155bdbacb.jpg',
+      description:'Xylocaine 2% Jelly is a local anesthetic used to temporarily numb certain areas of the body. It is used as an anesthetic lubricant to insert instruments in the human body for medical procedures (e.g., catheters). It is also used for the treatment of symptoms of painful inflammation of the urethra and bladder. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Arrhythmia</li>' +
+            '<li>Piles</li>' +
+            '<li>Mouth ulcers</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Allergic reaction</li>' +
+          '<li>Application site reactions (burning, irritation, itching and redness)</li>' +
+          '</ul>',
+          usage:'<ul><li>Xylocaine 2% Jelly is a local anesthetic. It works on the skin by blocking pain signals from the nerves to brain. This numbs the area and decreases pain sensation.</li>' +'</ul>'
+      },
+      price: '₹46.8',
+    },
+    Xyzal5mgTablet: {
+      name:'Xyzal 5mg Tablet',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/441addaed55b4d908ee66fdeefd2c435.jpg',
+      description:'Xyzal 5mg Tablet belongs to a group of medicines called antihistamines. It is used to treat various allergic conditions such as hay fever, conjunctivitis, some skin reactions such as eczema, hives, and reactions to bites and stings. It also relieves watery eyes, runny nose, sneezing, and itching. ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Allergic eye disease</li>' +
+                '<li>Nasal allergy symptoms</li>'+
+                '<li>Nasal allergy symptoms</li>'+
+                '<li>Allergic skin conditions</li>'+
+          '</ul>',
+        sideeffects: '<ul><li>Sleepiness</li>' +
+                '<li>Fatigue</li>'+
+                '<li>Fever</li>'+
+                '<li>Cough</li>'+
+          '</ul>',
+          usage:'<ul><li>Xyzal 5mg Tablet is an antihistaminic medication. It treats allergy symptoms such as itching, swelling, and rashes by blocking the effects of a chemical messenger (histamine) in the body.</li>' +'</ul>'
+      },
+      price: '₹179',
+    } ,
+    XgevaSolutionforInjection: {
+      name:'Xgeva Solution for Injection',
+      img:'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/uykeqmqsoaasq9v6cp7t.jpg',
+      description:' ',
+      dosage: {
+        storage: '<ul><li>Store in a refrigerator (2 - 8°C). Do not freeze.</li>' +
+          '</ul>',
+        uses : '<ul><li>Osteoporosis</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Rash</li>' +
+          '<li>Musculoskeletal (bone, muscle or joint) pain</li>' +
+          '<li>Eczema</li>' +
+          '<li>Nerve pain</li>' +
+          '</ul>',
+          usage:'<ul><li>Xgeva Solution for Injection is a monoclonal antibody. It binds to a protein that causes bone loss, thereby strengthening the bone and minimizing the risk of fractures.</li>' +'</ul>'
+      },
+      price: '₹21302',
+    }
+};   
+// Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>
