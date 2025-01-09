@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharma Info</title>
+    <style>
+        /* General Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 2.0;
+            background-color: #f5f5f5;
+            color: #333;
+            margin: 20px;
+            padding: 0;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        ul {
+            list-style: none;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #0077cc;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header h1 {
+            font-size: 1.8rem;
+        }
+        header .search-bar {
+            flex: 1;
+            margin: 0 20px;
+        }
+        header input {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        header nav {
+            display: flex;
+            gap: 15px;
+        }
+        header nav a {
+            font-size: 1rem;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        header nav a:hover {
+            background-color: #005fa3;
+        }
+
+        /* Main Section */
+        main {
+            padding: 20px;
+        }
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        .product-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+        }
+        .product-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+        .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card .price {
+            font-weight: bold;
+            color: #0077cc;
+        }
+        .product-card button {
+            background-color: #0077cc;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .product-card button:hover {
+            background-color: #005fa3;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f1f1f1;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: #0077cc;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+        .search-input {
+            padding: 10px;
+            width: 300px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+            outline: none;
+        }
+        .search-input:focus {
+            border-color: #007BFF;
+        }
+        .search-button {
+            padding: 10px 15px;
+            margin-left: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .search-button:hover {
+            background-color: #0056b3;
+        }
+        .search-results {
+            margin-top: 20px;
+            text-align:center;
+        }
+        .table-name {
+            font-weight: bold;
+        }
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointrer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .info-box {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #e0f7fa;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            font-size: 18px;
+            color: #00796b;
+        }
+    </style>
+</head>
+<body>
+        </div>
+    </header>
+
+
+
+
+
+<div class="medicine-details" id="medicineDetails">
+    <!-- Medicine details will be dynamically loaded here -->
+</div>
+
+<div class="tabs">
+    <a href="#" class="tab-button" onclick="showData('storage')"><button>Storage</button></a>
+    <a href="#" class="tab-button" onclick="showData('uses')"><button>Uses</button></a>
+    <a href="#" class="tab-button" onclick="showData('sideeffects')"><button>Side Effects</button></a>
+    <a href="#" class="tab-button" onclick="showData('usage')"><button>Usage</button></a>
+</div>
+<!-- Content for Storage -->
+<div id="storageContent" class="content">
+    
+</div>
+
+<!-- Content for Uses -->
+<div id="usesContent" class="content">
+    
+</div>
+
+<!-- Content for Side Effects -->
+<div id="sideeffectsContent" class="content">
+    
+</div>
+
+<!-- Content for Usage -->
+<div id="usageContent" class="content">
+    
+</div>
+    
+<script>
+// Medicine data for each tablet
+const medicines = {
+  Daunotec20mgInjection: {
+      name: 'Daunotec 20mg Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_240,h_240/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/hx2gxivwmeoxxxsc1hix.png',
+      description: 'Daunotec 20mg Injection is used for the treatment of blood cancer (leukemia). It works by interfering with the growth of cancer cells, which are eventually destroyed.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Blood cancer</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Low blood platelets</li>' +
+          '<li>Ulcer</li>' +
+          '</ul>',
+      usage: '<ul><li>Daunotec 20mg Injection is an anti-cancer medication. It works by damaging the genetic material (DNA) of the cancer cells and stops their growth and multiplication.</li>' +
+              '</ul>',
+      },
+      price: '255',
+    },
+    DacotinRTU50Injection: {
+      name: 'Dacotin RTU 50 Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/n0fkbcbv1vae1rr8qt8q.jpg',
+      description: 'Dacotin RTU 50 Injection is used in the treatment of cancer of colon and rectum. It shows its working by stopping or slowing down the growth of cancer cells.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Cancer of colon and rectum</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Abdominal pain</li>' +
+          '<li>Injection site reaction</li>' +
+          '<li>Weight gain</li>' +
+          '<li>Conjunctivitis</li>' +
+          '</ul>',
+      usage: '<ul><li>Dacotin RTU 50 Injection is an anti-cancer medication. It works by damaging the genetic material (DNA and RNA) of the cancer cells which stops their growth and multiplication.</li>' +
+              '</ul>',
+      },
+      price: '1653',
+    },
+    Dolo650Tablet: {
+      name: 'Dolo 650 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/mu5bahqxfrp28cut6que.jpg',
+      description: 'Dolo 650 Tablet helps relieve pain and fever by blocking the release of certain chemical messengers responsible for fever and pain.',
+      dosage: {
+        storage: '<ul><li>Store below 25°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '<li>Treatment of Fever</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Headache</li>' +
+          '<li>Constipation</li>' +
+          '<li>Itching</li>' +
+          '<li>Insomnia (difficulty in sleeping)</li>' +
+          '</ul>',
+      usage: '<ul><li>Dolo 650 Tablet is an analgesic (pain reliever) and anti-pyretic (fever reducer). It works by blocking the release of certain chemical messengers that cause pain and fever.</li>' +
+              '</ul>',
+      },
+      price: '26.4',
+    },
+    DytorPlus10Tablet: {
+      name: 'Dytor Plus 10 Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/ky1bw7mt0vgrsvjxfgqc.jpg',
+      description: 'Dytor Plus 10 Tablet is a combination of two medicines used to reduce excess fluid levels in the body while maintaining the potassium balance.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Edema</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dizziness</li>' +
+          '<li>Frequent urge to urinate</li>' +
+          '<li>Headache</li>' +
+          '<li>Inflammation of the nose</li>' +
+          '</ul>',
+      usage: '<ul><li>Dytor Plus 10 Tablet is a combination of two medicines: Spironolactone and Torasemide.</li>' +
+              '</ul>',
+      },
+      price: '88.4',
+    },
+    DoxinateTablet: {
+      name: 'Doxinate Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cbf8c02f815b4553943cd4eaac284806.jpg',
+      description: 'Doxinate Tablet is a combination medicine used to treat nausea and vomiting during pregnancy. It prevents the feeling of nausea and sickness in pregnant women. It also provides nutrition to the body.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Nausea and vomiting in pregnancy</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dryness in mouth</li>' +
+          '<li>Lightheadedness</li>' +
+          '<li>Drowsiness</li>' +
+          '</ul>',
+      usage: '<ul><li>Doxylamine and vitamin B6 (pyridoxine), which treats nausea and vomiting associated with pregnancy.</li>' +
+              '</ul>',
+      },
+      price: '234',
+    },
+    DuolinInhaler: {
+      name: 'Duolin Inhaler',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/9030b05d-3cfa-473b-bd95-e0c6703b4114.jpeg',
+      description: 'Duolin Inhaler is used for the treatment of chronic obstructive pulmonary disorder (a lung disorder in which the flow of air to the lungs is blocked). ',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Chronic obstructive pulmonary disease (COPD)</li>' +
+          '<li>Treatment and prevention of Asthma</li>' +
+          '<li>Treatment and prevention of Bronchitis</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Dryness in mouth</li>' +
+          '<li>Cough</li>' +
+          '<li>Tremors</li>' +
+          '<li>Headche</li>' +
+          '</ul>',
+      usage: '<ul><li>Duolin Inhaler is a combination of two medicines: Levosalbutamol and Ipratropium. Levosalbutamol is a bronchodilator while Ipratropium is an anticholinergic.</li>' +
+              '</ul>',
+      },
+      price: '371',
+    },
+    DiclomolTablet: {
+      name: 'Diclomol Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/s98mmbtq4jji6te2bmkx.jpg',
+      description: 'Diclomol Tablet is a pain-relieving medicine. It is used to reduce pain and inflammation in conditions like rheumatoid arthritis, ankylosing spondylitis, and osteoarthritis.',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Pain relief</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Stomach pain/epigastric pain</li>' +
+          '<li>Heartburn</li>' +
+          '</ul>',
+      usage: '<ul><li>Diclomol Tablet is a combination of two medicines: Diclofenac and Paracetamol.</li>' +
+              '</ul>',
+      },
+      price: '95.2',
+    },
+    DeriphyllinInjection: {
+      name: 'Deriphyllin Injection',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cropped/uksfmsvjk1dpr5icfkzf.jpg',
+      description: 'Deriphyllin Injection is used to treat asthma and chronic obstructive pulmonary disorder (a lung disorder in which the flow of air to the lungs is blocked).',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Chronic obstructive pulmonary disease (COPD)</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Headche</li>' +
+          '<li>Restlessness</li>' +
+          '</ul>',
+      usage: '<ul><li>Deriphyllin Injection is a combination of two bronchodilators: Etofylline and Theophylline. They work by relaxing the muscles in the airways and widen the airways. This makes breathing easier.</li>' +
+              '</ul>',
+      },
+      price: '87',
+    },
+    DuraplusTablet: {
+      name: 'Duraplus Tablet',
+      img: 'https://onemg.gumlet.io/l_watermark_346,w_480,h_480/a_ignore,w_80,h_80,c_fit,q_auto,f_auto/cad085495eae45f0b4d805901f95b844.jpg',
+      description: 'Duraplus Tablet is a combination of two medicines used in the treatment of premature ejaculation in adult men',
+      dosage: {
+        storage: '<ul><li>Store below 30°C</li>' +
+          '</ul>',
+        uses : '<ul><li>Treatment of Premature ejaculation</li>' +
+          '</ul>',
+        sideeffects: '<ul><li>Nausea</li>' +
+          '<li>Vomiting</li>' +
+          '<li>Indigestion</li>' +
+          '<li>Headche</li>' +
+          '</ul>',
+      usage: '<ul><li>Duraplus Tablet is a combination of two medicines : Tadalafil and Dapoxetine, which treat premature ejaculation.</li>' +
+              '</ul>',
+      },
+      price: '299',
+    }, 
+  };
+
+
+
+    // Function to get query parameters from the URL
+function getQueryParam(param) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(param);
+}
+
+// Get the medication parameter from the URL
+const medication = getQueryParam('medication');
+
+// Display the medication details when the page loads
+function showMedicineDetails() {
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>${medicineData.name}</h2>
+            <img src="${medicineData.img}" alt="${medicineData.name}">
+            <p><strong>Price:</strong> ${medicineData.price}</p>
+            <p><strong>Description:</strong> ${medicineData.description}</p>
+            
+        `;
+    } else {
+        document.getElementById('medicineDetails').innerHTML = `
+            <h2>Medicine not found</h2>
+            <p>Sorry, we couldn't find the details for the selected medicine.</p>
+        `;
+    }
+}
+
+// Function to show the specific content for each tab
+function showData(type) {
+    // Hide all content sections
+    document.getElementById('storageContent').style.display = 'none';
+    document.getElementById('usesContent').style.display = 'none';
+    document.getElementById('sideeffectsContent').style.display = 'none';
+    document.getElementById('usageContent').style.display = 'none';
+
+    // Show the corresponding content based on the tab clicked
+    const medicineData = medicines[medication];
+
+    if (medicineData) {
+        if (type === 'storage') {
+            document.getElementById('storageContent').style.display = 'block';
+            document.getElementById('storageContent').innerHTML = `<p>${medicineData.dosage.storage}</p>`;
+        } else if (type === 'uses') {
+            document.getElementById('usesContent').style.display = 'block';
+            document.getElementById('usesContent').innerHTML = `<p>${medicineData.dosage.uses}</p>`;
+        } else if (type === 'sideeffects') {
+            document.getElementById('sideeffectsContent').style.display = 'block';
+            document.getElementById('sideeffectsContent').innerHTML = `<p>${medicineData.dosage.sideeffects}</p>`;
+        } else if (type === 'usage') {
+            document.getElementById('usageContent').style.display = 'block';
+            document.getElementById('usageContent').innerHTML = `<p>${medicineData.dosage.usage}</p>`;
+        }
+    }
+}
+
+// Call the function to display details when the page loads
+showMedicineDetails();
+</script>
+</body>
+</html>
