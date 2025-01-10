@@ -46,7 +46,7 @@ header input {
   }
   .card:hover
   {
-   border:#000 5px solid;
+   border:#000 3px solid;
   }
   .card button {
       display:flex;
