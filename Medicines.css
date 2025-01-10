@@ -40,14 +40,13 @@ header input {
       flex-direction: column;
       background-color:#fff;
       color:black;
-      border: #000 2px solid;
       padding-bottom: 10px;
       gap:0;
       border-radius: 25px;
   }
   .card:hover
   {
-    background-color:rgb(128, 138, 142);
+   border:#000 5px solid;
   }
   .card button {
       display:flex;
