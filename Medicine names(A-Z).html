@@ -9,15 +9,10 @@
 <body>
     <header>
         <h1>PharmaInfo</h1>
-        <input type="text" placeholder="Search for medicines, Alternatives...">
-        <br>
-        </header>
-        <style>
-       button:hover{
-        background-color:darkgray;
-        border:3px solid;
-       }
-        </style>
+        <input type="text" id="search-input" placeholder="Search for medicines, Alternatives..." onkeyup="searchMedicines()">
+        <div id="search-results"></div>
+    </header>
+
     <div class="medicine-names">
         <br>
         <div class="row">
@@ -51,7 +46,49 @@
             </div>
         </div>
     </div>
+
     <footer>
     </footer>
+
+    <script>
+        // Function to handle the search query and call the API
+        function searchMedicines() {
+            let query = document.getElementById("search-input").value; // Get search input
+            let resultDiv = document.getElementById("search-results"); // Div to display results
+            
+            // Clear previous results
+            resultDiv.innerHTML = "";
+
+            // If query is empty, don't proceed
+            if (query.trim() === "") return;
+
+            // Create the URL for the API request
+            let apiUrl = `http://139.59.37.38/pharmainfo/searchpi.php?query=${encodeURIComponent(query)}`;
+
+            // Fetch the API data
+            fetch(apiUrl)
+                .then(response => response.json())  // Assume the response is in JSON format
+                .then(data => {
+                    if (data && data.length > 0) {
+                        data.forEach(medicine => {
+                            // For each medicine, display its name in the results
+                            let resultItem = document.createElement("div");
+                            resultItem.classList.add("search-item");
+                            resultItem.innerHTML = `
+                                <a href="medicine.html?medication=${encodeURIComponent(medicine.name)}">${medicine.name}</a>
+                                <p>${medicine.description}</p>
+                            `;
+                            resultDiv.appendChild(resultItem);
+                        });
+                    } else {
+                        resultDiv.innerHTML = "<p>No results found</p>";
+                    }
+                })
+                .catch(error => {
+                    resultDiv.innerHTML = "<p>Error fetching search results</p>";
+                    console.error('Error:', error);
+                });
+        }
+    </script>
 </body>
 </html>
